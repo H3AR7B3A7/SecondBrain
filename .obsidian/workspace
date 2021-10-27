@@ -1,0 +1,115 @@
+{
+  "main": {
+    "id": "17809a9123d97c7f",
+    "type": "split",
+    "children": [
+      {
+        "id": "7ff6f7b32f722598",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Code/Frameworks/Spring/Spring Security.md",
+            "mode": "source"
+          }
+        },
+        "group": "04e2d008d3582857"
+      },
+      {
+        "id": "76363e54d4b3e5b4",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Code/Frameworks/Spring/Spring Security.md",
+            "mode": "preview"
+          }
+        },
+        "group": "04e2d008d3582857"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ecba0ec08cf18acc",
+    "type": "split",
+    "children": [
+      {
+        "id": "a2bdc8a12b98a279",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "845cc72f89158225",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d9bfc88b64c1ca3a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "54cdc12c60523ee4",
+    "type": "split",
+    "children": [
+      {
+        "id": "d056f4c5f14009f7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f87ec9f777632964",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Code/Frameworks/Spring/Spring Security.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "7ff6f7b32f722598",
+  "lastOpenFiles": [
+    "Code/Frameworks/Spring/Spring Security.md",
+    "Code/Frameworks/Node/Node.js.md",
+    "Code/Frameworks/Vue/Vue.md",
+    "Code/Frameworks/React/React.md",
+    "Code/Languages/CSS/CSS.md",
+    "Code/Languages/HTML/HTML.md",
+    "Code/Languages/Java/Java.md",
+    "Code/Languages/JavaScript/Typescript/Typescript.md",
+    "Code/Languages/JavaScript/JavaScript.md",
+    "Code/Languages/Kotlin/Kotlin.md"
+  ]
+}
