@@ -4,28 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "7ff6f7b32f722598",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Code/Frameworks/Spring/Spring Security.md",
-            "mode": "source"
-          }
-        },
-        "group": "04e2d008d3582857"
-      },
-      {
         "id": "76363e54d4b3e5b4",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Code/Frameworks/Spring/Spring Security.md",
+            "file": "Administration/Memo's.md",
+            "mode": "source"
+          }
+        },
+        "group": "1688ffd11671d150"
+      },
+      {
+        "id": "773b2eec0952d8ff",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Administration/Memo's.md",
             "mode": "preview"
           }
         },
-        "group": "04e2d008d3582857"
+        "group": "1688ffd11671d150"
       }
     ],
     "direction": "vertical"
@@ -60,6 +60,14 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "ddeb67965b084f63",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
           }
         ]
       }
@@ -81,13 +89,36 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Code/Frameworks/Spring/Spring Security.md",
+                "file": "Administration/Memo's.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "cc3b03cdb57a72d9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "da7ae959a5aa5ca3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Administration/Memo's.md",
+                "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
@@ -99,17 +130,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "7ff6f7b32f722598",
+  "active": "76363e54d4b3e5b4",
   "lastOpenFiles": [
+    "Administration/Memo's.md",
+    "Code/Operating Systems/Linux/Commands.md",
+    "Administration/Credentials.md",
+    "Administration/Names.md",
+    "Obsidian/Obsidian.md",
+    "Soft Skills.md",
+    "Untitled 1.md",
+    "Obsidian/Plugins/Some Plugin.md",
     "Code/Frameworks/Spring/Spring Security.md",
-    "Code/Frameworks/Node/Node.js.md",
-    "Code/Frameworks/Vue/Vue.md",
-    "Code/Frameworks/React/React.md",
-    "Code/Languages/CSS/CSS.md",
-    "Code/Languages/HTML/HTML.md",
-    "Code/Languages/Java/Java.md",
-    "Code/Languages/JavaScript/Typescript/Typescript.md",
-    "Code/Languages/JavaScript/JavaScript.md",
-    "Code/Languages/Kotlin/Kotlin.md"
+    "Administration/Todo.md"
   ]
 }

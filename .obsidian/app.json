@@ -1,1 +1,8 @@
-{}
+{
+  "spellcheck": true,
+  "foldHeading": true,
+  "alwaysUpdateLinks": true,
+  "foldIndent": true,
+  "showLineNumber": true,
+  "showUnsupportedFiles": true
+}
