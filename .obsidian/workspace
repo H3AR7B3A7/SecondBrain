@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Administration/Memo's.md",
+            "file": "Obsidian/Obsidian.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Administration/Memo's.md",
+            "file": "Obsidian/Obsidian.md",
             "mode": "preview"
           }
         },
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Administration/Memo's.md",
+                "file": "Obsidian/Obsidian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Administration/Memo's.md",
+                "file": "Obsidian/Obsidian.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,15 +132,15 @@
   },
   "active": "76363e54d4b3e5b4",
   "lastOpenFiles": [
-    "Administration/Memo's.md",
-    "Code/Operating Systems/Linux/Commands.md",
-    "Administration/Credentials.md",
-    "Administration/Names.md",
     "Obsidian/Obsidian.md",
-    "Soft Skills.md",
-    "Untitled 1.md",
-    "Obsidian/Plugins/Some Plugin.md",
+    "Code/Soft Skills/Retro.md",
     "Code/Frameworks/Spring/Spring Security.md",
-    "Administration/Todo.md"
+    "Administration/Memo's.md",
+    "Administration/Names.md",
+    "Administration/Stocks.md",
+    "Code/Operating Systems/Linux/Commands.md",
+    "Administration/Bookmarks.md",
+    "Administration/Credentials.md",
+    "Untitled 1.md"
   ]
 }

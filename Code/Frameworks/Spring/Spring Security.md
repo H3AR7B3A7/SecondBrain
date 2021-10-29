@@ -95,7 +95,7 @@ Spring Security adds a layer of filters in the servlet container before the Disp
 *The provider will return an Authenticated Principal Object, for the Authentication Filter to store in the Security Context, where it can be retrieved by other filter lower down the filter chain.*
 
 ## Form & Basic Authentication
-By default Spring implements form authentication. It's a simple form creating a POST request to the /login endpoint, with the username and password in the body.
+By default, Spring implements form authentication. It's a simple form creating a POST request to the /login endpoint, with the username and password in the body.
 
 With basic authentication a concatenation of username:password is transmitted via the header. It is base64 encoded to encode non http-compatible characters. It doesn't add any extra security, because it is easily decoded.
 
@@ -104,7 +104,7 @@ With basic authentication a concatenation of username:password is transmitted vi
 [Encode / Decode Base64](https://www.base64encode.org/)
 
 ### Overwriting Default Configuration
-By default SpringBootWebSecurityConfiguration configures both form and basic authentication. We can overwrite the defaults by creating our own implementation of WebSecurityConfigurerAdapter.
+By default, SpringBootWebSecurityConfiguration configures both form and basic authentication. We can overwrite the defaults by creating our own implementation of WebSecurityConfigurerAdapter.
 
 ```java
 @Configuration  
@@ -118,6 +118,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()  
         .httpBasic();  
     }   
+}
+```
+
+## Multiple Filter Chains
+The DelegatingFilterProxy will iterate through all the available filter chains. To do this it needs the order and the RequestMatcher of each FilterChain. The default order of the filter chain is '100' and 2 filter chains can't have the same order. 
+
+We can create multiple classes implementing the WebSecurityConfigurerAdapter with a different order / Requestmatcher.
+
+## Default Protection
+By default, Spring Security will include a lot of headers in responses to clients. These instruct the browser on how to communicate more securely with the application. They are added by the header filter, which we can also customize.
+
+### Cache Control Header
+By default, Spring tells the browser to block all caching to prevent identity theft.
+When we do want caching on non-sensitive information, we can disable cachecontrol in the configuration or the controller:
+
+```java
+@Override  
+protected void configure(HttpSecurity http) throws Exception {
+	http.headers().cachecontrol().disable()
+	.and()
+	// ...
+}
+``` 
+Or better:
+```java
+@GetMapping("/price")
+public ResponseEntity<BigDecimal> priceOfBtc() {
+	return ResponseEntity.ok()
+		.cacheControl(CacheControl.maxAge(30, TimeUnit.SECONDS))
+		.body(priceService.getCurrentPriceForCrypto("BTC"));
 }
 ```
 

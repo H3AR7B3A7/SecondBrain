@@ -1,5 +1,4 @@
-# Soft Skills
-## Retro
+# Retro
 ### Intro
 - Go over last retro action points
 - ENERGIZER
