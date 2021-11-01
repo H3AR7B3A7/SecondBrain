@@ -325,6 +325,141 @@ We can configure HttpSecurity to either use Http Basic login or a Login Form:
 - Basic: *username:password* in the header
 - Form: *FormData* can hold more than just username and password in the body of a POST request
 
+## Secrets
+
+Examples of secrets:
+- User credentials
+- Database service credentials
+- Keystore passwords
+- API keys
+- ...
+
+*These are often, but should not be hard coded in the code, nor in the properties files.*
+
+We should:
+- Encrypting our secrets within the application
+- Externalize our secrets with Spring Cloud Vault
+- Follow good practices
+	- Auditing
+	- Rotation
+	- Invalidation
+
+### Encrypting
+We can use the [Jasypt library](http://www.jasypt.org/) to encrypt our secrets, which has good Spring support.
+
+Dependency:
+```xml
+<dependency>
+	<groupId>com.github.ulisesbocchio</groupId>
+	<artifactId>jasypt-spring-boot-starter</artifactId>
+</dependency>
+```
+
+Jasypt will encrypt our secrets by using an algorithm and a password. We can use the **encrypt.bat** script to generate the encrypted secret. Then we can provide the encrypted secret in the properties:
+
+```properties
+server.ssl.key-store-password=ENC(RRAFEAfAF5eaf75aeF7aGFEA)
+```
+
+We now only need to provide the algorithm and the password in a secure way.
+
+```properties
+jasypt.encryptor.password=AIDNIFGNEAZOFJ
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+jasypt.encryptor.algorithm=PBEWithMD5AndTripleDES
+```
+
+For this we want to use environment variables:
+
+```properties
+jasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+jasypt.encryptor.algorithm=${JASYPT_ENCRYPTOR_ALGORITHM}
+```
+
+### Secret Management
+Good practices:
+- Fine-grained access to secrets
+- Encryption
+- Automate rotating secrets frequently
+- Auditing by whom, when and why secrets were accessed
+
+#### Secret Sprawl:
+*When we talk about **secret sprawl**, we're really talking about littering our secrets throughout the architecture.*
+
+Common places:
+- Properties files
+- Environment variables
+- Source code
+- Configuration management (Jenkins, Ansible, Bamboo, Puppet...)
+- Source control (Git or SVN) **!!!DANGER!!!**
+
+*We should centralize our secrets into one location and prevent duplication, and provide clients with fine-grained (bare-minimum) access to these secrets.*
+
+### Spring Vault
+Spring Vault is an abstraction around vault by [[HashiCorp]] which can provide functionality to implement good Secret management as described above.
+
+Dependency:
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-vault-config</artifactId>
+</dependency>
+```
+
+*Spring Vault also provides support for different Secret backends, like: Consul, RabbitMQ, AWS & different Databases.*
+
+## Authentication & Authorization Exceptions
+
+**Authentication**:  
+AuthenticationFilter -> 401 Unauthorized
+
+**Authorization**:  
+InterceptorFilter -> 403 Forbidden
+
+### Login Errors
+By default Spring redirects the user to the login page with a query parameter:
+
+> localhost:8080/login?error
+
+*We should only provide general messages that credentials were incorrect, to not provide information on the existence of any user names.*
+
+We could change the behavior and redirect to another page:
+
+```java
+http
+    .formLogin()
+    .loginPage("/login")
+	.failureUrl("/login_error")
+	.failureHandler(new AuthenticationFailureHandlerImpl())
+	.defaultSuccessUrl("/home")
+```
+
+By creating an implementation of the AuthenticationFailureHandler we can add custom functionality like logging or notifying the user by email.
+
+Allthough Spring Security is a good framework, we should prevent providing any information about our security implementation to the users. For this reason we might want to disable white label error pages:
+
+```properties
+server.error.whitelabel.enabled=false
+```
+
+Instead, we can provide our own pages in the folder `resources/static/error` and name them `404.html`, or the default `error.html`, or write our own error controller.
+
+We can find some more information [here](https://www.baeldung.com/spring-boot-custom-error-page).
+
+### Exception Handling
+We can also do some custom auditing when there are attempts to unauthorized access. We can do this by writing our own implementation of the AccessDeniedHandler.
+
+```java
+http
+    .eceptionHandling()
+	.accessDeniedPage("/access_denied")
+	.accessDeniedHandler(new AccessDeniedHandlerImpl())
+```
+
+### Application Exceptions
+
+*Search fields inside the application should always ring some alarm bells. We want to make sure the exceptions thrown when the input isn't what we expected don't provide malicious parties with sensitive information, like for instance a database back end service. This will leave the application open to common SQL injection attacks. Although using prepared statements protect us from these, we should still provide adequate exception handling.*
 
 ---
 #Spring 
