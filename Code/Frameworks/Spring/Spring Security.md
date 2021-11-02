@@ -1,6 +1,16 @@
 # Spring Security
 Spring Security is a powerful and highly customizable authentication and access-control framework for Java applications. It is the de-facto standard for securing [[Spring]]-based applications.
 
+Before it was called Spring Security, it was named ACEGI. As one of the earliest security frameworks, it has grown in one of the most feature rich security framework to date.
+
+Integrates well with:
+- Web
+- CAS
+- OAuth
+- LDAP
+- Database
+- Web Services
+
 Advantages:
 - Application layer security, not tied to a specific web-server
 - Easily extended to meet custom requirements
@@ -460,6 +470,7 @@ http
 ### Application Exceptions
 
 *Search fields inside the application should always ring some alarm bells. We want to make sure the exceptions thrown when the input isn't what we expected don't provide malicious parties with sensitive information, like for instance a database back end service. This will leave the application open to common SQL injection attacks. Although using prepared statements protect us from these, we should still provide adequate exception handling.*
+
 
 ---
 #Spring 
