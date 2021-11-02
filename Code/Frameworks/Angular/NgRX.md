@@ -1,6 +1,6 @@
 # NgRX
 ## What is NgRX?
-NgRx is a framework for building reactive applications in Angular. NgRx provides libraries for:
+NgRx is a framework for building reactive applications in [[Angular]]. NgRx provides libraries for:
 
 - Managing global and local state.
 - Isolation of side effects to promote a cleaner component architecture.

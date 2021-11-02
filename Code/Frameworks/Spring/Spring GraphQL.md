@@ -1,7 +1,7 @@
 # GraphQL
 *[GraphQL](https://graphql.org/) offers greater flexibility in the response returned than REST.*
 
-- Allows client to specify the exact data needed
+- Allows client to specify the exact data needed from a [[Spring]] rest service
 - Aggregation of data from multiple sources
 - No longer required to call multiple APIs for needed data
 - GraphQL offers maximum efficiency and flexibility

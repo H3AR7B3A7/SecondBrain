@@ -1,5 +1,5 @@
 # Angular Data Sharing
-We often need to share data within our application. Here we will go over multiple ways to do so in different situation.
+We often need to share data within our [[Angular]] application. Here we will go over multiple ways to do so in different situation.
 
 ## Communication Within Component
 ### One-Way Data Binding

@@ -4,7 +4,7 @@
 - Pattern based
   - No boilerplate
 - Injected resources
-  - Uses Spring DI libraries
+  - Uses [[Spring]] DI libraries
 - ORM (like Hibernate and JPA, but simpler)
 - Works well with existing databases
 

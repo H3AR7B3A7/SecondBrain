@@ -53,7 +53,7 @@ Reactive development is:
 - Resilient to failure
 - Reactive tot state changes
 
-RxJs stands for "Reactive Extension for JavaScript". The RxJS library defines its own Observable class along with supporting methods for Reactive programming.
+RxJS stands for "Reactive Extension for JavaScript". The RxJS library defines its own Observable class along with supporting methods for Reactive programming. Many frameworks like [[Angular]] and others implement an RxJS library.
 
 Advantages:
 

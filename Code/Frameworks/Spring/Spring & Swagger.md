@@ -28,7 +28,7 @@ We can find more tools for API design, testing and deployment [here](http://swag
 
 ## Springfox
 Library:
-- Generates Swagger from Spring Project
+- Generates Swagger from [[Spring]] Project
 - Uses Spring and Swagger annotations
 - Good default values for documentation
 

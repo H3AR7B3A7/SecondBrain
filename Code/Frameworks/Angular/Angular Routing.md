@@ -1,4 +1,6 @@
 # Angular Routing
+*Routing in our [[Angular]] application*
+
 ## Routing Parameters
 ### Required Parameters
 
@@ -236,3 +238,7 @@ How modules are preloaded is based on the **preloading strategy**:
 - Custom
 
   We can create our own service and implement PreloadingStrategy to create our own custom strategy.
+  
+  
+  ---
+  #Typescript 

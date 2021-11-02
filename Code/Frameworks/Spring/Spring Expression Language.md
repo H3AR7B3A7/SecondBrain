@@ -1,6 +1,6 @@
-# SpEL (Java)
+# Spring Expression Language (SpEL)
 
-An expression language can be used for accessing data that is stored in objects or beans.
+[[Spring]] expression language can be used for accessing data that is stored in objects or beans.
 This makes it possible to perform dynamic bean wiring in applications.
 
 - Write expression as a string

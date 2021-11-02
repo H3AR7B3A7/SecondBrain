@@ -13,7 +13,7 @@ Dependency:
 
 - JUnit
 - Mockito
-- Spring Test (MockMVC)
+- [[Spring]] Test (MockMVC)
 
 @SpringBootTest:
 - Convenient way to start up an application context to be used in a test

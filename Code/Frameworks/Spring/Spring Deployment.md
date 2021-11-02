@@ -28,7 +28,7 @@ Since Maven is not aware of environment variables, we need to provide them in th
 > maven -Dname=value clean install
 
 ## Common Application Properties
-We can find common Spring properties [here](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html).
+We can find common [[Spring]] properties [here](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html).
 
 ## Custom Auto Configuration
 Example:

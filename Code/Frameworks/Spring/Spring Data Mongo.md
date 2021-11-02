@@ -1,4 +1,6 @@
 # Spring Data Mongo
+[[Spring]] Data also offers support for Mongo.
+
 ## Dependencies
 Starter Data Mongo:
 ```xml

@@ -1,5 +1,5 @@
 # Spring Security & Angular
-A simple angular application with resources secured by Spring Security.
+A simple angular application with resources secured by [[Spring]] Security.
 
 ## Http Basic 
 ### Spring Security Configuration

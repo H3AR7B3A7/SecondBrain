@@ -5,7 +5,7 @@
 - Gives us enterprise level features
 
 ## Dependencies
-Spring Boot project:
+[[Spring]] Boot project:
 ```xml
 <!-- Everything you need for Spring Data JPA -->
 <dependency>
@@ -417,8 +417,8 @@ Settle on standards with the team we are working with on the project.
 - Methods that follow the query DSL keyword naming structure
 
 ## Advanced Features
-- [Paging & Sorting](src/main/java/com/pluralsight/conferencedemo/repositories/SessionsJpaRepository.java)
-- [Custom Repositories](src/main/java/com/pluralsight/conferencedemo/repositories/CustomSessionJpaRepositoryImpl.java)
+- Paging & Sorting
+- Custom Repositories
 - Auditing Support
   - @CreatedBy
   - @LastModifiedBy

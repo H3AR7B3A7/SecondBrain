@@ -11,7 +11,7 @@ Artifact thymeleaf is the Core library:
 </dependency>
 ```
 
-Artifact thymeleaf-spring5 (there is also 3 or 4) allows integrating Thymeleaf with the Spring Framework,
+Artifact thymeleaf-spring5 (there is also 3 or 4) allows integrating Thymeleaf with the [[Spring]] Framework,
 especially (but not only) Spring MVC:
 ```xml
 <dependency>

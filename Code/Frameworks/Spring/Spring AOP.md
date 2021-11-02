@@ -1,6 +1,6 @@
 # Spring AOP
 
-Aspect Oriented Programming is used to separate business logic from cross-cutting functionality.
+[[Spring]] uses aspect Oriented Programming to separate business logic from cross-cutting functionality.
 
 ## Common Use Cases
 

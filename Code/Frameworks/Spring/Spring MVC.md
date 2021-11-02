@@ -35,7 +35,7 @@ A tool to call api's from command line:
 - ViewResolver: Locates View to serve
 - Servlet-config: Configuration file (Can also be done using java configuration)
 - POJO: Plain Old Java Object
-- Bean: Spring configured POJO
+- Bean: [[Spring]] configured POJO
 
 ## Configuration
 - pom.xml (dependencies)

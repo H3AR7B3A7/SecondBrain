@@ -22,7 +22,7 @@ Abstractions:
   - Rarely touch underlying libraries
   - Easy to learn additional modules
 - Reduction in Boilerplate
-- Integrates easily into Spring Boot
+- Integrates easily into [[Spring]] Boot
 
 ## Module Hierarchy
 ![Module Hierarchy](module-hierarchy.png)

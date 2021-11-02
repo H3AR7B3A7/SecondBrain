@@ -1,5 +1,5 @@
 # Template Forms
-Template forms, while easy to use, are not testable in our unit tests.
+Using template forms in our [[Angular]] application , while easy to use, is not testable by our unit tests.
 
 ## Why Template Forms
 - Easy to create / read when the form isn't too complex

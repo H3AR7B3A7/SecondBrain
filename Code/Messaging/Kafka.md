@@ -72,15 +72,15 @@ In Powershell we run batch files starting with './', while if we use command pro
 ### Kafka In Software Architecture
 *A simple representation of Kafka in software architecture:*
 
-![Producer - Kafka - Consumer](img/producer-kafka-consumer.png)
+![Producer - Kafka - Consumer](producer-kafka-consumer.png)
 
 *A more detailed example of Kafka in software architecture (with multiple producers and consumers):*
 
-![Producer - Kafka - Consumer - Details](img/producer-kafka-consumer-details.png)
+![Producer - Kafka - Consumer - Details](producer-kafka-consumer-details.png)
 
 ### Topics
 *A consumer group reading multiple partitions (at different offsets) from a topic:*
-![Kafka Topic](img/kafka-topic.png)
+![Kafka Topic](kafka-topic.png)
 
 ### Consumer Group
 The load on consumers will automatically re-balance when the number of consumers within the same consumer group changes.

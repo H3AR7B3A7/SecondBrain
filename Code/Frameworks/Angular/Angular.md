@@ -639,7 +639,7 @@ We can also create our own (more complex) preloading strategies.
 
 ## Testing
 ### Testing With(out) Testbed
-When Angular CLI generates components it also generates tests in \*.spec.ts. These contain some boilerplate implementing a testbed for template testing, like in [this default example](jestProject/src/app/heroes/heroes.component.spec.ts). When we aren't testing against the template however, we can speed up testing by not using the testbed like in [this faster example](testProject/src/app/hero/hero.component.spec.ts).
+When Angular CLI generates components it also generates tests in \*.spec.ts. These contain some boilerplate implementing a testbed for template testing. When we aren't testing against the template however, we can speed up testing by not using the testbed.
 
 ### Common commands
 > ng test  
