@@ -186,13 +186,48 @@ provides hundreds of ready-to-use connectors.
 ## Kafka & Docker
 
 ### Bitnami
-```console
-docker run --name zookeeper -e ALLOW_ANONYMOUS_LOGIN=yes -p 2181:2181 -d bitnami/zookeeper:latest
+[Official docs](https://hub.docker.com/r/bitnami/kafka)
+
+Docker-compose:
+```yaml
+version: "3"  
+  
+services:  
+  zookeeper:  
+    image: 'bitnami/zookeeper:latest'  
+ container_name: zookeeper  
+    ports:  
+      - '2181:2181'  
+ environment:  
+      - ALLOW_ANONYMOUS_LOGIN=yes  
+  kafka:  
+    image: 'bitnami/kafka:latest'  
+ container_name: kafka  
+    ports:  
+      - '9092:9092'  
+ environment:  
+      - KAFKA_BROKER_ID=1  
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092  
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092  
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181  
+      - ALLOW_PLAINTEXT_LISTENER=yes  
+      - TOPICS_TO_CREATE=todo-list-service  
+    depends_on:  
+      - zookeeper
 ```
 
-```console
-docker run --name kafka1 -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181 -e ALLOW_PLAINTEXT_LISTENER=yes -p :9092 -d bitnami/kafka:latest
-```
+Run docker-compose.yml:
+> docker-compose -f docker-compose.yml up -d
+
+Enter container:
+> docker exec -it kafka /bin/sh
+
+Create console consumer:
+> kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic todo-list-service --from-beginning
+
+Create console producer:
+> kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic todo-list-service
+
 
 ### Wurstmeister
 docker-compose.yml:
@@ -216,10 +251,17 @@ services:
 ```
 
 Run docker-compose:
-> docker-compose -f docker-compose.yml up
+> docker-compose -f docker-compose.yml up -d
 
 Create a topic:
 > kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 100 --topic myTopic
+
+Create consumer:
+> kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic myTopic --from-beginning
+
+Create Producer:
+> kafka-console-producer.sh --broker-list kafka:9092
+--topic myTopic
 
 ---
 #Kafka
