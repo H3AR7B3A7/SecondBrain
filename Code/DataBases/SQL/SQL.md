@@ -1,4 +1,6 @@
 # SQL
+[[Database]]
+
 ## SQL Injection Attacks
 Example:
 ```sql

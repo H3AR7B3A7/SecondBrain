@@ -5,7 +5,7 @@ Azure, announced at Microsoft's Professional Developers Conference (PDC) in Octo
 
 ## Services
 - Windows Azure
-- SQL Database
+- [[Microsoft SQL Server]]
 - Azure AppFabric
 - Live Mesh
 - SharePoint & Dynamics CRM (part of Office 365)

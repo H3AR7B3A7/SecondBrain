@@ -1,5 +1,5 @@
 ## Npm
-Npm is the default package manager.
+Npm is a package manager for [[JavaScript]] projects. It is the default package manager for [[Angular]].
 
 Npm keeps track of the specific dependencies of different packages in package-lock.json.
 In older versions we had to use:
@@ -30,3 +30,8 @@ To add packages we use:
 To find out why a package exists on your project:
 
 > yarn why packageName
+
+
+
+---
+#GoodPractice

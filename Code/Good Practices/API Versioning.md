@@ -1,4 +1,5 @@
 # API Versioning
+Versioning of our [[REST]] API allows for running newer versions of our API without breaking applications using the older API. Allowing time for developers of third party applications to upgrade to the newer version.
 
 ## Good Practices
 
