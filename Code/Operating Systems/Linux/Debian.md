@@ -1,5 +1,5 @@
 # Debian  
-Debian, also known as Debian GNU/Linux, is a [[Linux]] distribution composed of free and open-source software,  
+Debian [[Operating System]], also known as Debian GNU/Linux, is a [[Linux]] distribution composed of free and open-source software,  
 developed by the community-supported Debian Project, which was established by Ian Murdock on August 16, 1993.  
 The first version of Debian (0.01) was released on September 15, 1993, and its first stable version (1.1)  
 was released on June 17, 1996. The Debian Stable branch is the most popular edition for personal computers and servers.  

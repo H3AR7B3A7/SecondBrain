@@ -1,5 +1,5 @@
 # Kali
-Kali Linux is a [[Debian]]-derived [[Linux]] distribution designed for digital forensics and penetration testing.  
+Kali Linux [[Operating System]] is a [[Debian]]-derived [[Linux]] distribution designed for digital forensics and penetration testing.  
 It is maintained and funded by Offensive Security.  
   
 It was developed by Mati Aharoni and Devon Kearns of Offensive Security through the rewrite of BackTrack,  

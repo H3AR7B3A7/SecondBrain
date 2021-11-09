@@ -211,8 +211,8 @@ To drop elevation:
   
 #### Changing file rights  
 > chmod > 777 file.txt  
-  
-![Chmod](img/chmod.png)  
+
+![[chmod.png]]
   
 #### Changing owner  
 > chown > username  
