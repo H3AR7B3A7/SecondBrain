@@ -14,7 +14,7 @@ Agile techniques are simply a codification of common sense of which seeds date b
 Walter Sherwart's Plan-Do-Study-Act (PDSA).  
 In 1986, Hirotaka Takeuchi and Ikujiro Nonaka published an article "New Product Development Game"  
 describing aa rapid, flexible development strategy to meet fast-paced product demand.  
-This article first paired the word 'Scrum' with product development, which became one of the most  
+This article first paired the word '[[Scrum]]' with product development, which became one of the most  
 popular agile project management frameworks.  
   
 In 2001 the **'Agile Manifesto'** was created, a statement of values for successful software development.  
