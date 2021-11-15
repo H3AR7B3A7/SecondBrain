@@ -637,8 +637,11 @@ Here is an [[Example LDAP Server Configuration]].
 	}
 	```
 
+## Securing Methods in Spring Security
+### Enabling Annotations
 
-
+@EnableGlobalMethodSecurity
+prePostEnabled
 
 
 ---

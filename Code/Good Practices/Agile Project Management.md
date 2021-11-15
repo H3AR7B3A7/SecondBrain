@@ -1,5 +1,4 @@
 # Agile Project Management  
-  
 Project management has only been around since half the twentieth century.   
 Winston Royce wrote "Managing the development of Large Software Systems" in the 1970s,  
 which described the phases in the 'waterfall methodology' as it was coined later.  
@@ -532,7 +531,7 @@ Requirements and results of the right philosophy:
   
 Planning only as much as you need to:   
 - Widely and holistically at first  
-- More detailed only just-in-time  
+- More detailed [[Analysis]] only just-in-time  
   - Inspect  
   - Adapt  
   
