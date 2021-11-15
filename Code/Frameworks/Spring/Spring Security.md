@@ -639,9 +639,67 @@ Here is an [[Example LDAP Server Configuration]].
 
 ## Securing Methods in Spring Security
 ### Enabling Annotations
+- @EnableGlobalMethodSecurity:
+```java
+@Configuration  
+@EnableWebSecurity  
+@EnableGlobalMethodSecurity(  
+ prePostEnabled = true,  
+ securedEnabled = true,  
+ jsr250Enabled = true)  
+public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
+	// ...
+}
+```
 
-@EnableGlobalMethodSecurity
-prePostEnabled
+- @Secured
+```java
+@PostMapping("registration")
+@Secured("ROLE_ADMIN")
+public String addRegistration(@Valid @ModelAttribute("registration") Registration registration) {
+	// ...
+}
+```
+
+## Security JSP Taglibs  
+Dependency:  
+```xml  
+<dependency>  
+ <groupId>org.springframework.security</groupId>  
+ <artifactId>spring-security-taglibs</artifactId>  
+</dependency>  
+```  
+  
+Taglib:  
+```html  
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>  
+<sec:authorize access="!isAuthenticated()">
+	<a href="login">Login</a>
+</sec:authorize>  
+```
+
+## Principal Injection  
+We can easily get the principal from a user just by injecting it in the called method:
+```java  
+@PostMapping("registration")  
+@Secured("ROLE_USER")  
+public String addRegistration(
+		@Valid @ModelAttribute ("registration") Registration registration,
+		BindingResult result,
+		Authentication auth) {
+	System.out.println("AUTHENTICATION PRINCIPAL = " + auth.getPrincipal()); 
+	// ...
+} 
+```
+
+From this principal we can get following fields:
+- Username
+- Password: [PROTECTED]
+- Enabled
+- AccountNonExpired
+- CredentialsNonExpired
+- AccountNonLocked
+- Granted Authorities
 
 
 ---
