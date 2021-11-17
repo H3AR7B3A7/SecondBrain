@@ -5,6 +5,8 @@ Representational State Transfer:
 - Resources can be represented in multiple formats
 - Communication between the client and endpoint is stateless
 
+## RESTFull
+[[Best Practice(s)]]
 
 
 ---

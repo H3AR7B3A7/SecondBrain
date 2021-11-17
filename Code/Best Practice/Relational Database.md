@@ -4,7 +4,7 @@
 - More than 80% of all data  
   
 ### Structured Data:  
-- SQL data  
+- [[SQL]] data  
   
 Advantages:  
 - Data consistency  
@@ -127,7 +127,7 @@ When designing an efficient database that avoids redundancy, identifying depende
   
 ## Database Design  
   
-Importance of knowing about good design:  
+Importance of knowing about good design and [[Best Practice(s)]]:  
 - Understand why a database you are working with was designed a certain way  
 - Learn quicker how to navigate your way around  
 - See the potential vulnerabilities and flaws  

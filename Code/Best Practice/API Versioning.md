@@ -1,8 +1,9 @@
 # API Versioning
 Versioning of our [[REST]] API allows for running newer versions of our API without breaking applications using the older API. Allowing time for developers of third party applications to upgrade to the newer version.
 
-## Good Practices
+## Best Practices
 
+Some of the [[Best Practice(s)]] are:
 - Group breaking changes into a single release
 - Only use major versions, minor versions shouldn't include breaking changes
 - Set end-of-life date for previous versions
@@ -122,3 +123,8 @@ Advantages:
 
 *In the case of using custom headers, define these in the loadbalancer instead of the project, and forward accordingly.
 Consider customizing a fixed 404 response when the custom header wasn't found to remind users of them.*
+
+
+
+---
+#BestPractice 

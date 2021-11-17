@@ -1,6 +1,5 @@
 # Design Patterns
-Design patterns:
-
+Design patterns are proven [[Best Practice(s)]] for handling some specific functionalities, they:
 -   Are reusable in multiple projects.
 -   Provide the solutions that help to define the system architecture.
 -   Capture the software engineering experiences.

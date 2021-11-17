@@ -1,6 +1,8 @@
 # Domain Driven Design (DDD)
 By Eric Evans  
-  
+
+DDD is all about [[Best Practice(s)]] for project structure and development for specific business needs.
+
 ## The Challenge of Complexity  
 - For most software projects, the primary focus should be on the domain and domain logic.  
 - Complex domain design should be based on a model.  

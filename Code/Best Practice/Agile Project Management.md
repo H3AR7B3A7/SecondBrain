@@ -1224,7 +1224,7 @@ Quality dynamics:
   
 Agile development teams have the primary responsibility for quality.  
   
-Proactive good practices:  
+Proactive [[Best Practice(s)]]:  
 - Emphasis on technical excellence and good design  
   - Freedom of self-management  
   - Organizational commitment to excellence  
@@ -1558,4 +1558,4 @@ Additional roles:
 They work in cadence with each other, and their backlogs align with program vision and backlog.  
   
 ---  
-*Work in progress...*
+#BestPractice 

@@ -6,8 +6,9 @@ Four main principles of OOP:
 -  **Inheritance**: Inheriting attributes or functions avoids code duplication.  
 -  **Polymorphism**: A single interface to entities of different types or the use of a single symbol to represent  
      multiple different types allows for different meaning or function depending on the instance.  
-  
-  
+
+OOP helps programmers with [[Best Practice(s)]] like the DRY principle and modeling code to real world structures.
+
 ## Creating Objects  
   
 ### Static Factory Methods  

@@ -1,5 +1,6 @@
 # Project Managers  
-  
+It can be considered [[Best Practice(s)]] to use project managers. They help people to set up projects and dependencies with consistency and ease.
+
 ## Maven  
   
 [[Maven]] is a powerful project management tool that is based on POM (project object model). It is used for projects build,  

@@ -1,7 +1,7 @@
 # Clean Code  
-  
+Clean code is all about [[Best Practice(s)]] for writing readable and easy to maintain code.
+
 ## Meaningful Names  
-  
 *Good*:  
 - Intentionally revealing  
 - Meaningful and distinct  
@@ -24,7 +24,6 @@
   
   
 ## Functions  
-  
 They should:  
 - Be small  
 - Have minimal nesting  
@@ -66,7 +65,6 @@ They should:
   
   
 ## DRY  
-  
 *Don't Repeat Yourself.*  
   
 A lot of evolution in languages and frameworks aims avoid repeating code:  
@@ -94,7 +92,6 @@ We start by writing a first draft and then improve our code to apply these good 
   
   
 ## Comments  
-  
 *At best, comments are a necessary evil.*  
   
 **GOOD Comments**:  
@@ -127,7 +124,6 @@ We start by writing a first draft and then improve our code to apply these good 
   
   
 ## Formatting  
-  
 Formatting tools:    
 Consistently apply rules to help communicate the code  
   
@@ -164,7 +160,6 @@ Visualises the scope hierarchy.
   
   
 ## Objects & Datastructutres  
-  
 Hiding implementation ≠ Layer of functions between the variables.  
   
 **Objects**  
@@ -184,7 +179,6 @@ Sometimes you really do want simple data structures with procedures operating on
   
   
 ### The Law of Demeter  
-  
 *(Modules shouldn't know about innards of the objects it manipulates.)*  
   
 A method **f** of a class **C** should only call methods of these:  
@@ -204,7 +198,6 @@ This way we avoid having to know about the inners of the objects.
   
   
 ### Data Transfer Objects  
-  
 Uses:  
 - Communication with databases  
 - Parsing from sockets  
@@ -218,7 +211,6 @@ None of these data structures should contain any business logic, which belongs i
   
   
 ## Error Handling  
-  
 *Error handling is important, but if it obscures logic, it's wrong.*  
   
 It is cleaner to throw an exception in the callee than it is to use return codes in the caller.  
@@ -232,7 +224,6 @@ An exception should provide adequate context in a good error message to locate t
   
   
 ### Defining Exceptions  
-  
 Classifications:  
 - Source  
 - Type  
@@ -249,13 +240,11 @@ One exception class is sufficient for an area of code, unless we want to catch o
   
   
 ### Defining Normal Flow  
-  
 Even better than handling an exception is making it part of the normal flow, by using something like the *Special Case Pattern*.  
 The client code doesn't need to handle the exception if it is encapsulated in a special case object.  
   
   
 ### Don't Return Null  
-  
 Passing null to a method is even worse than returning null.  
   
 Fixes:  
@@ -266,7 +255,6 @@ We'd still have a runtime error, and it is better to forbid passing null in the 
   
   
 ## Boundaries  
-  
 We should keep clean boundaries between our software and foreign code.  
   
 Conflicting interests:  
@@ -284,7 +272,6 @@ We can then write a wrapper for the actual code when eventually the code is deve
   
   
 ## Unit Tests  
-  
 *If we let our tests rot, the production code will rot too.*  
   
 Three laws of TDD:  
@@ -314,8 +301,7 @@ FIRST (Object Mentor Training Materials idea of writing clean tests)
 - Timely: They should be written right before production code  
   
   
-## Classes  
-  
+## Classes
 Order:  
 - public static finals (constants)  
 - private static variables  
@@ -338,13 +324,11 @@ Rules a clean class adheres to:
   - We use interfaces and abstract classes to isolate concrete details from changes in the code  
   
   
-## Systems  
-  
+## Systems
 Abstractions and modularity are key for components to work effectively.  
   
   
-### Separating construction from use:  
-  
+### Separating construction from use:
 **Separation of main:**  
 - Main:  
   - Consistent strategy for resolving major dependencies  
@@ -360,8 +344,7 @@ An authoritative mechanism, either a main routine or a special-purpose container
 The Spring framework provides the best known DI container for Java.  
   
   
-### Scaling up:  
-  
+### Scaling up:
 *The architecture of software systems can grow incrementally **IF** proper separation of concerns is maintained.*  
   
 In practice, sometimes fine-grained intersection of domains can tend to cut across the natural object boundaries.  
@@ -395,15 +378,13 @@ and write components together. However, the process of creating standards can so
 and some standards lose touch with the real needs of the adopters they are intended to serve.  
   
   
-### Domain Specific Languages  
-  
+### Domain Specific Languages
 DSL can help code to better reflect a domain experts input. Used effectively, they can raise the abstraction level above code idioms and design patterns.  
   
 They allow all levels of abstraction and all domains in the application to be expressed as POJOs, from high-level policy to low-level details.  
   
   
-## Emergence  
-  
+## Emergence
 Kent Beck's four rules of **Simple Design**:  
 - Runs all the tests  
 - Contains no duplication  
@@ -411,8 +392,7 @@ Kent Beck's four rules of **Simple Design**:
 - Minimizes the number of classes and methods  
   
   
-## Concurrency  
-  
+## Concurrency
 Concurrency helps us decouple what gets done from when it gets done. It can improve the throughput and the structure of a program.  
 The improvement in throughput is greatest when there is a lot of waiting involved (for example on web-sockets).  
   
@@ -428,8 +408,7 @@ Facts:
 - Concurrency often requires a fundamental change in design strategy  
   
   
-### Concurrency Defense Principles  
-  
+### Concurrency Defense Principles
 Principles for defending code from concurrency problems:  
 - Single responsibility principle  
 - Limiting the scope of data  
@@ -441,8 +420,7 @@ Principles for defending code from concurrency problems:
 *Attempt to partition data into independent subsets that can be operated on by independent threads, possibly in different processors.*  
   
   
-### Know Your Libraries  
-  
+### Know Your Libraries
 - java.util.concurrent  
 - java.util.concurrent.atomic  
 - java.util.concurrent.locks  
@@ -457,8 +435,7 @@ Some interesting subjects to know about:
 - CountDownLatch  
   
   
-### Know Your Execution Models  
-  
+### Know Your Execution Models
 Problems:  
 - Bound resources  
 - Mutual exclusion  
@@ -481,8 +458,7 @@ Execution models:
     - Livelock  
   
   
-### Dependencies Between Synchronized Methods  
-  
+### Dependencies Between Synchronized Methods
 *Avoid using more than one method on a shared object.*  
   
 When we use more than one method on a shared object:  
@@ -491,16 +467,14 @@ When we use more than one method on a shared object:
 - Adapted Server  
   
   
-### Keep Synchronized Sections Small  
-  
+### Keep Synchronized Sections Small
 *Keep critical sections few and small.*  
   
 The locks in synchronized blocks create overhead and delays which need to be avoided.  
 We want to keep these blocks small and concise when we need them.  
   
   
-### Shut-Down Code  
-  
+### Shut-Down Code
 Writing graceful shut-down code is hard.  
   
 Threads waiting for signals to continue that never come can lead to deadlock.  
@@ -510,8 +484,7 @@ Threads working in pairs might be unable to receive shut-down signals waiting fo
 Review existing algorithms, because this is probably harder than you think.*  
   
   
-## Testing Threaded Code  
-  
+## Testing Threaded Code
 Testing only minimizes risk for incorrect behaviour.  
   
 *Write tests that have the potential to expose problems and run them frequently with different programmatic/system configurations and load.  
@@ -534,8 +507,7 @@ If tests ever fail, track down the failure. Don't ignore failure because tests p
 - Instrument your code to try and force failures  
   
   
-## Smells and Heuristics  
-  
+## Smells and Heuristics
 Comments:  
 - Inappropriate information  
 - Obsolete comment  
@@ -618,4 +590,4 @@ Tests:
   
   
 ---  
-*Work in progress...*
+#BestPractice 

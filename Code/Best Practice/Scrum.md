@@ -1,5 +1,4 @@
 # Scrum  
-  
 Scrum is a framework utilizing an Agile mindset for developing, delivering, and sustaining complex products,  
 with an initial emphasis on software development, although it has been used in other fields including research,  
 sales, marketing and advanced technologies.  

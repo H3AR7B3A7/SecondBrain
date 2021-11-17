@@ -1,5 +1,5 @@
 # Analysis
-Some tips when performing an analysis:
+Some [[Best Practice(s)]] tips when performing an analysis:
 
 - You should be able to read the story in 6 months or a year and understand it.  
 - **Out of scope** is important. This prevents you from dragging in extra stuff. It is your guardian when you are time constrained.  
@@ -39,3 +39,8 @@ Some tips when performing an analysis:
 - Sketchbook for your thoughts. ideal place for brain dumps.  
 - Archive for questions asked to PO and architect. And their answers: 'small decision' archive.  
 - Answers: do not only write down yes/no. But also why. The fact that the answer is Yes can be always be retrieved from the code. The why usually not.
+
+
+
+---
+#BestPractice 
