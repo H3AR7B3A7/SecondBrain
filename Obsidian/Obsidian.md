@@ -37,4 +37,4 @@ In Obsidian, making and following **connections** is frictionless. Tend to your 
 
 
 ---
-#Obsidian
+#Obsidian #Notes
