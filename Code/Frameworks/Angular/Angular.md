@@ -2,7 +2,7 @@
 # Getting Started With Angular
 [Official Angular Pages](https://angular.io/)
 
-Angular is a TypeScript-based open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.
+Angular is a [[TypeScript]]-based open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.
 
 ### Installation
 - **Install NPM & Node.js**: Download installer [here](https://nodejs.org/en/download/).
