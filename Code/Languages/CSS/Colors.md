@@ -1,5 +1,5 @@
 # Colors
-Color notations:
+Color notations in [[CSS]]:
 
 -   Built-in
 -   Hex-value (hexagonal)
