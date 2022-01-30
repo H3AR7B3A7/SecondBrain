@@ -5,6 +5,13 @@ The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- i
 [Install WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
 [WSL | Ubuntu](https://ubuntu.com/wsl)
 
+## Activation
+- Turn Windows features on or off:
+	- Windows Subsystem for Linux
+	- Virtual Machine Platform
+- Reboot
+- Install distribution(s)
+
 ## Some commands
 List:
 > wsl -l -v
