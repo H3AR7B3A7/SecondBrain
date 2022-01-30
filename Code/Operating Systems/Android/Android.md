@@ -1,4 +1,4 @@
 # Android
-[[Operating System]]
+[[Unix]]-based [[Operating System]] for smartphones.
 
 ---

@@ -19,7 +19,7 @@ When the sponsorship ended, the Debian Project formed the nonprofit organization
 to continue financially supporting development.  
   
 ## Unix Philosophy  
-Unix is a family of multitasking, multiuser computer operating systems that derive from the original AT&T Unix,  
+[[Unix]] is a family of multitasking, multiuser computer operating systems that derive from the original AT&T Unix,  
 whose development started in the 1970s at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others.  
   
 Unix systems are characterized by a modular design that is sometimes called the "Unix philosophy".  
