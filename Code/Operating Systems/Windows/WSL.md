@@ -19,11 +19,34 @@ List:
 Set default version:
 > wsl --set-default-version 2
 
-Set distribution:
-> wsl --set-version DistributionName
+Set distribution / version:
+> wsl --set-version DistributionName VersionNumber
 
 Terminate distribution:
 > wsl -t DistributionName
+
+Version:
+> cat /proc/version
+
+## What is WSL 2?
+Includes a lightweight virtual machine based on Hyper-V with a Real Linux Kernel, allowing to run things like Docker.
+
+## Docker with WSL 2
+> curl -fsSL https://get.docker.com -o get-docker.sh
+> sh get-docker.sh
+
+For details about using Docker Desktop with WSL 2, visit:
+[Docker documentation on WSL 2](https://docs.docker.com/go/wsl2/)
+
+Make sure you have wsl_update_x64.msi or higher:
+[Manual installation steps for older versions of WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+
+In Docker settings:
+Resources > WSL Integration > Toggle distribution(s)
+
+To grant the user permissions to use docker in in the kernel:
+>  sudo chmod 666 /var/run/docker.sock
+
 
 
 
