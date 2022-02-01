@@ -28,6 +28,11 @@ Terminate distribution:
 Version:
 > cat /proc/version
 
+Access files on the hard drive:
+> cd /mnt/c/   (...)
+
+Any other [[Unix]]-like commands will work in this kernel.
+
 ## What is WSL 2?
 Includes a lightweight virtual machine based on Hyper-V with a Real Linux Kernel, allowing to run things like Docker.
 
