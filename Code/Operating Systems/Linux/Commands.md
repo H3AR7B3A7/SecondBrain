@@ -9,6 +9,18 @@
 
 
 ## Most popular
+Path of Working Directory
+> pwd
+
+User information
+> whoami
+
+???
+> ps auxww
+
+
+
+
 
 
 ## Nono's
