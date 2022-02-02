@@ -1,5 +1,5 @@
 # Windows Subsystem for Linux (WSL)
-The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- including most command-line tools, utilities and applications -- directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup.
+The Windows Subsystem for Linux lets developers run a GNU/Linux environment -- including most command-line tools, utilities and applications -- directly on Windows, unmodified, without the overhead of a traditional virtual machine or dualboot setup. It does not provide a linux desktop, but allows the user to use [[Unix]]-like commands and run bash-scripts within the [[Windows]] OS.
 
 [What is Windows Subsystem for Linux | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/about)
 [Install WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
@@ -30,8 +30,6 @@ Version:
 
 Access files on the hard drive:
 > cd /mnt/c/   (...)
-
-Any other [[Unix]]-like commands will work in this kernel.
 
 ## What is WSL 2?
 Includes a lightweight virtual machine based on Hyper-V with a Real Linux Kernel, allowing to run things like Docker.
