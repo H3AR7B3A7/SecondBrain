@@ -9,15 +9,26 @@
 
 
 ## Most popular
-Path of Working Directory
+Manual
+> man "command"
+
+Print Working Directory
 > pwd
 
-User information
+Print user id
 > whoami
+
+Show who is logged in
+> who
+
+List
+> ls
 
 ???
 > ps auxww
 
+Clear terminal
+> clear
 
 
 
