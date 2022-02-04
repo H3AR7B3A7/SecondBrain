@@ -10,7 +10,10 @@
 
 ## Most popular
 Manual
-> man "command"
+> man "command" 
+> help "command"
+
+*Most commands have a manual, but some like 'cd' do not. They do however have help pages. This goes for all of [built-in-shell commands](https://www.computerhope.com/unix/bash/index.htm).* 
 
 Print Working Directory
 > pwd
@@ -24,11 +27,25 @@ Show who is logged in
 List
 > ls
 
-???
-> ps auxww
+Change directory
+> cd
 
 Clear terminal
 > clear
+
+Make folder
+> mkdir
+
+Make file / update timestamp
+> touch "filename"
+
+Edit file
+> vim "filename"
+
+
+
+???
+> ps auxww
 
 
 
