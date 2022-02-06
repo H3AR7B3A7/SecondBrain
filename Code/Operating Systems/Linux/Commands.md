@@ -36,13 +36,20 @@ Clear terminal
 Make folder
 > mkdir
 
+Remove empty folder
+> rmdir
+
 Make file / update timestamp
 > touch "filename"
 
 Edit file
 > vim "filename"
 
+Remove file or folder
+> rm
 
+Open file or folder
+> xdg-open "filename"
 
 ???
 > ps auxww
