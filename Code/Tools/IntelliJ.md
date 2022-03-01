@@ -98,7 +98,22 @@ Some other functions do not have keyboard shortcuts, you might want to consider 
 *(Tip: <kbd>Alt</kbd> + <kbd>Numpad 0 - 9</kbd> makes for 10 easy extra shortcuts you can use to suit your needs.)*
 
 ## Plugins
+### Functional
+- CheckStyle IDEA
+- Easy l18n
 - [[GitHub Copilot]]
+- google-java-format
+- GWT
+- JPA Buddy
+- PlantUML integration
+- Spring Boot Assistant
+- UUID Generator
+
+Cosmetic
+- Atom Material Icons
+- Dark Purple Theme
+- Nyan Progress Bar
+- Rainbow Brackets
 
 ---
 #IDE #IntelliJ
