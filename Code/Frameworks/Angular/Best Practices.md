@@ -12,6 +12,50 @@ Some best practices for [[Angular]] projects.
 
 A single class (component, service, ...) or modules should have one responsibility.
 
+## Immutability
+
+Create new objects instead of mutating existing ones.
+For example:
+```typescript
+this.currentUser.classes.push(classId);
+```
+Can be written immutable by using the spread operator and functions that return new objects:
+```typescript
+this.currentUser = {
+    ...this.currentUser,
+    classes: this.currentUser.classes.concat(classId)
+}
+```
+
+Another example:
+```typescript
+saveUser(user): Observable<any> {
+    user.classes = user.classes || []
+    this.currentUser = user
+    return EMPTY.pipe(delay(1000))
+}
+```
+Can be written like this:
+```typescript
+saveUser(user): Observable<any> {
+    const classes = user.classes || []
+    this.currentUser = { ...user, classes: [...classes]}
+    return EMPTY.pipe(delay(1000))
+}
+```
+
+## Small Functions
+
+Refactor large functions into  well named smaller ones.
+
+## Settings
+
+-   Generally it is best to use Angular default settings
+-   Do NOT set strict mode to false in tsconfig.json !!!
+-   Do NOT set strictInjectionParameters to false in tsconfig.json
+-   Do NOT set strictInputAccessModifiers to false in tsconfig.json
+-   Do NOT set strictTemplates to false in tsconfig.json
+
 ## Project Structure
 
 Use the angular CLI where possible:
@@ -26,15 +70,53 @@ Use the angular CLI where possible:
 
 *Tip: When in doubt, use -d
 
-Core:
+### Core Module:
 
--   Application wide services like AuthService
+-   Application level services like AuthService
 -   Interfaces / classes used by those services like User for this example
+-   Application level components like a navigation bar
+-   It should import CommonModule
+-   We add the CoreModule to the imports of the AppModule
 
-Shared:
+```typescript
+@NgModule({
+     imports: [ CommonModule ];
+     exports: [ NavBarComponent ]
+     declarations: [ NavBarComponent ]
+     // providers: [ AuthService ]
+})
+export class CoreModule {}
+```
+
+### Shared Module:
 
 -   For components / services / custom pipes / directives / models shared between features
--   Should be added to the imports array in the module that uses it
+-   Should be added to the imports of the modules that use it
+-   It should import CommonModule
+-   It can export CommonModule, so feature modules don't need to import it separately
+
+``` typescript
+@NgModule({  
+     imports: [ CommonModule ],  
+     exports: [ LoadingSpinnerComponent ],  
+     declarations: [ LoadingSpinnerComponent, ComonModule ],  
+})  
+export class CoreModule {}
+```
+
+### Feature Module:
+
+-   Lazy load the feature module (Read the topic about lazy loading in Routing)
+
+``` typescript
+@NgModule({  
+     imports: [ RouterModule, SharedModule ]; // Notice that there is no CommonModule  
+     exports: [ ]  
+     declarations: [ SomeComponent ]  
+     // providers: [ SomeService ]    <--- Read the topic about Tree-Shakeable Providers in Services  
+})  
+export class SomeModule {}
+```
 
 ## Modules
 
@@ -49,29 +131,48 @@ Shared:
 -   Always prefer interfaces over classes when no objects need be created.
 -   Only actual data models, presenting business logic end with .model.ts
 
-## Routes
+## Routing
 
--   Lazy load feature modules on routing
+-   Use a wildcard at the end of the routes to catch faulty paths and direct the user to a 404:
 
+``` json
+{ path: '**', component: PageNotFoundComponent }
+```
+
+-   or a default path:
+
+``` json
+{ path: '**', redirectTo: 'somewhere' }
+```
+
+-   Be mindful that angular routes should be in the right order. And the default value for pathMatch is 'prefix'. For example everything is prefixed by an empty string. We can use 'full' to match the whole path.
+- -   Lazy load feature modules in routes
+
+``` json
 {
     path: 'somewhere',
     loadChildren: () => import('./items/items.module').then(m => m.SomeModule)
 }
+```
 
 -   Be sure to not include SomeModule (and its components) in AppModule
 -   In the routing of SomeModule provide the path '' for the component to be loaded on '/somewhere'
 
+``` json
 { path: '', component: SomeComponent }
+```
 
--   Use a wildcard at the end of the routes to catch faulty paths and direct the user to a 404:
+-   When using lazy loading we can opt to pre-load other modules in the background once the previous module is loaded, using PreloadAllModules or a custom preloading strategy.
 
-{ path: '**', component: PageNotFoundComponent }
-
--   or a default path:
-
-{ path: '**', redirectTo: 'somewhere' }
-
--   Be mindful that angular routes should be in the right order. And the default value for pathMatch is 'prefix'. For example everything is prefixed by an empty string. We can use 'full' to match the whole path.
+``` typescript
+@NgModule({  
+  imports: [RouterModule.forRoot(routes, {  
+    preloadingStrategy: PreloadAllModules  
+  })],  
+  exports: [RouterModule]  
+})  
+export class AppRoutingModule { }
+```
 
 ## Hierarchy
 
@@ -95,14 +196,54 @@ Shared:
     -   functions
 -   Start private fields with _ and create a getter for them when they need to be accessed from outside the API or in tests.
 
+``` typescript
 private _someClassMember
 
 get someClassMember() {
          return this._someClassMember
 }
+```
 
 -   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
 -   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
+-   Use the OnPush Changedetection strategy
+  For this to work we need to:
+	- Use immutable objects, because angular will detect changes by object reference
+	- Subscribe to our observables using the async pipe in the template, instead of subscribing in ngOnInit
+
+```typescript
+@Component({
+    // ...
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+```
+
+-   Add prefixes to selectors that match the feature area they belong to
+
+```typescript
+@Component({
+    // ...
+    selector: 'feature-some-stuff',
+})
+```
+
+-   Or using the CLI
+
+ > ng g c some-stuff --prefix=feature
+
+-   Remove the selector of components that are not meant to be embedded in any template
+-   If styling or template is longer than 3 lines, keep them in separate files, instead of using `--inline-style` or `--inline-template`
+-   Use scss if you plan to work with Angular Material
+-   Use the @Input and @Output decorators over declaring inputs and outputs in the component decorator
+- Keep the components as simple and focused as possible, delegate more complex logic to services
+
+```typescript
+applyFilter(filter: string) {
+     this.visibleTabs = this.filterTabsService.complexFilteringMethod(filter, this.tabs)
+}
+```
+
+-   Generally creating a component for a piece of functionality is usually a good thing, however when elements in the component have a lot of attributes (autofocus, autocomplete, disabled, ...) like buttons or text inputs, we would need to create input properties for all of them on that new component. In this case it might be better to not make for example a pair-of-buttons component.
 
 ## RxJS
 

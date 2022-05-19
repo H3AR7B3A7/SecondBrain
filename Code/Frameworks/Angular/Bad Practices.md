@@ -16,3 +16,12 @@
 	- Use one file per component / service / directive
 - Classes or modules with multiple functions / responsibility
 	- Adhere to the Single Responsibility Principle
+- Large functions
+	- Refactor large functions into separate well named smaller ones
+- Mutating objects
+	- Use immutability creating new objects instead of mutating them
+- Turn off strict mode
+	- Keep strict mode on
+	- Use the Angular default settings
+- Not implementing lifecyclehook interfaces
+	- Implement the interfaces for the used lifecyclehooks to get editor compiler errors when they are implemented incorrectly
