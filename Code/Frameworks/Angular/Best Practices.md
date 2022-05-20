@@ -48,17 +48,10 @@ saveUser(user): Observable<any> {
 
 Refactor large functions into  well named smaller ones.
 
-## Settings
+## Angular CLI
+Use the angular CLI where possible.
 
--   Generally it is best to use Angular default settings
--   Do NOT set strict mode to false in tsconfig.json !!!
--   Do NOT set strictInjectionParameters to false in tsconfig.json
--   Do NOT set strictInputAccessModifiers to false in tsconfig.json
--   Do NOT set strictTemplates to false in tsconfig.json
-
-## Project Structure
-
-Use the angular CLI where possible:
+### Example project structure
 -   ng n my-project --routing --style scss
 -   ng g m core
 -   ng g m shared
@@ -70,10 +63,30 @@ Use the angular CLI where possible:
 
 *Tip: When in doubt, use -d
 
+## Settings
+
+-   Generally it is best to use Angular default settings
+-   Do NOT set strict mode to false in tsconfig.json !!!
+-   Do NOT set strictInjectionParameters to false in tsconfig.json
+-   Do NOT set strictInputAccessModifiers to false in tsconfig.json
+-   Do NOT set strictTemplates to false in tsconfig.json
+-   Do NOT set aot to false in angular.json
+-   Do NOT set enableIvy to false in tsconfig.app.json
+-   In angular.json, defaultConfiguration should be set to 'production'
+
+## Modules
+
+-   Work in modules for different functionality, and try to make them work as a whole / unit.  
+    A rule of thumb is that when you navigate to a whole different route (in your topmost router outlet), you probably need a module.  
+    (The same goes for the top level in secondary outlets.)
+-   Declare components in the module they belong to, not the top module. (See hierarchy for more info.)
+-   Avoid exports and provides in the same module
+
 ### Core Module:
 
--   Application level services like AuthService
--   Interfaces / classes used by those services like User for this example
+-   It contains application level services like AuthService
+-   The core module will never be lazy loaded, so its services will always be available throughout the whole application
+-   It also holds interfaces and classes used by those services like User for this example
 -   Application level components like a navigation bar
 -   It should import CommonModule
 -   We add the CoreModule to the imports of the AppModule
@@ -118,19 +131,6 @@ export class CoreModule {}
 export class SomeModule {}
 ```
 
-## Modules
-
--   Work in modules for different functionality, and try to make them work as a whole / unit.  
-    A rule of thumb is that when you navigate to a whole different route (in your topmost router outlet), you probably need a module.  
-    (The same goes for the top level in secondary outlets.)
--   Declare components in the module they belong to, not the top module. (See hierarchy for more info.)
--   Avoid exports and provides in the same module
-
-## Models
-
--   Always prefer interfaces over classes when no objects need be created.
--   Only actual data models, presenting business logic end with .model.ts
-
 ## Routing
 
 -   Use a wildcard at the end of the routes to catch faulty paths and direct the user to a 404:
@@ -146,7 +146,8 @@ export class SomeModule {}
 ```
 
 -   Be mindful that angular routes should be in the right order. And the default value for pathMatch is 'prefix'. For example everything is prefixed by an empty string. We can use 'full' to match the whole path.
-- -   Lazy load feature modules in routes
+-   When declaring routes in AppModule use RouterModule.forRoot(...) and RouterModule.forChild(...) in every other feature module
+-   Lazy load feature modules in routes
 
 ``` json
 {
@@ -180,6 +181,11 @@ export class AppRoutingModule { }
 -   Bubble them up to the first module they belong to when it is shared within the module.
 -   Then bubble it up to a common shared module when it is shared outside the module.
 -   Lastly, bubble them up to a library when they are shared among applications.
+
+## Models
+
+-   Always prefer interfaces over classes when no objects need be created.
+-   Only actual data models, presenting business logic end with .model.ts
 
 ## Components
 
@@ -245,50 +251,6 @@ applyFilter(filter: string) {
 
 -   Generally creating a component for a piece of functionality is usually a good thing, however when elements in the component have a lot of attributes (autofocus, autocomplete, disabled, ...) like buttons or text inputs, we would need to create input properties for all of them on that new component. In this case it might be better to not make for example a pair-of-buttons component.
 
-## RxJS
-
--   Use $ behind an observable.
--   Prevent subscribing to observables, use async pipes in the template instead.
--   Use the takeUntil operator to complete observables instead of unsubscribing.
-
-``` typescript
-private stopFiring = new Subject()
-
-someObservable$.pipe(
-     // Do all the things...
-     takeUntil(this.stopFiring)
-);
-
-// To complete the observable
-this.stopFiring.next()
-```
-
--   When creating a Subject, use asObservable() to prevent leaking the observer side of the Subject.
-
-``` typescript
-private someSubject = new Subject()
-
-get someSubject$() {
-      return this.someSubject.asObservable()
-}
-```
-
--   Use timer for polling.
-
-``` typescript
-someObservable$ = timer(1, 5000).pipe(
-     switchMap(() => this.getDataService.getData(/*...*/)),
-     retry(), // Retry when the call fails (don't wait 5s)
-     share(), // When multiple sources subscribe only make one call for all subscriptions
-     // ...
-     takeUntil(this.stopPolling) // Stop when stopPolling fires
-)
-```
-
-## State
-
-[https://www.codelab.esaturnus.com/bitbucket/projects/SAL/repos/planning-ui/pull-requests/44/overview](https://www.codelab.esaturnus.com/bitbucket/projects/SAL/repos/planning-ui/pull-requests/44/overview)
-
 ## Services
 
 ### Singleton
@@ -333,8 +295,71 @@ someObservable$ = timer(1, 5000).pipe(
 
 ## Directives
 
-  
+### Structural
 
-Proposal in progress...
+#### ngFor:
 
-## ![](https://www.codelab.esaturnus.com/confluence/download/attachments/118653271/image2022-5-17_11-50-36.png?version=1&modificationDate=1652781036991&api=v2 "Steven D'Hondt > Angular code structure > image2022-5-17_11-50-36.png")
+*trackBy:*
+The use of trackBy it's a performance optimization and is usually not needed by default, it's in principle only needed if running into performance issues.
+
+Let's say that you are shipping to ancient mobile browsers or ancient versions of IE: you might want to consider applying trackBy as a precaution in your larger tables, but it really depends on your system and the use case.
+
+## RxJS
+
+-   Use $ behind an observable.
+-   Prevent subscribing to observables, use async pipes in the template instead.
+-   Use the takeUntil operator to complete observables instead of unsubscribing.
+
+``` typescript
+private stopFiring = new Subject()
+
+someObservable$.pipe(
+     // Do all the things...
+     takeUntil(this.stopFiring)
+);
+
+// To complete the observable
+this.stopFiring.next()
+```
+
+-   When creating a Subject, use asObservable() to prevent leaking the observer side of the Subject.
+
+``` typescript
+private someSubject = new Subject()
+
+get someSubject$() {
+      return this.someSubject.asObservable()
+}
+```
+
+-   Use timer for polling.
+
+``` typescript
+someObservable$ = timer(1, 5000).pipe(
+     switchMap(() => this.getDataService.getData(/*...*/)),
+     retry(), // Retry when the call fails (don't wait 5s)
+     share(), // When multiple sources subscribe only make one call for all subscriptions
+     // ...
+     takeUntil(this.stopPolling) // Stop when stopPolling fires
+)
+```
+
+## State
+
+...
+
+## Bundle Sizes
+
+When adding large 3d party dependencies to our application it might be a good idea to check the impact it has on our file sizes.
+
+We can monitor bundle sizes by installing SME:
+
+> yarn global add source-map-explorer
+
+And build the app with sourceMaps, by default Angular will build a production build:
+
+> yarn run build --sourceMap=true
+
+In the dist folder under our project run SME on the bundle you want to inspect (main bundle), eg:
+
+> source-map-explorer main.946363c07a664402.js
