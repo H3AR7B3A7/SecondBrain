@@ -1,5 +1,6 @@
 # Angular Best Practices
 Some best practices for [[Angular]] projects.
+Be sure to also check out the [Official Angular Style Guide](https://angular.io/guide/styleguide).
 
 ## LIFT
 
@@ -184,7 +185,7 @@ export class AppRoutingModule { }
 
 ## Models
 
--   Always prefer interfaces over classes when no objects need be created.
+-   Always prefer interfaces over classes when the model doesn't require any supporting functions in it
 -   Only actual data models, presenting business logic end with .model.ts
 
 ## Components
@@ -363,3 +364,6 @@ And build the app with sourceMaps, by default Angular will build a production bu
 In the dist folder under our project run SME on the bundle you want to inspect (main bundle), eg:
 
 > source-map-explorer main.946363c07a664402.js
+
+---
+#Angular #BestPractice 

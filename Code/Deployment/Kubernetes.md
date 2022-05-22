@@ -270,3 +270,6 @@ spec:
 
 Serve Mongo Express
 > minikube service mongo-express-service
+
+---
+#k8s

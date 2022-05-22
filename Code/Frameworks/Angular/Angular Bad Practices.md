@@ -1,4 +1,4 @@
-# Bad Practices to avoid
+# Bad Practices in Angular to avoid
 - Poor file naming
 	- Should say something about the content
 	- Should have the right suffix: e.g.: ...component.ts, ...service.ts
@@ -25,3 +25,6 @@
 	- Use the Angular default settings
 - Not implementing lifecyclehook interfaces
 	- Implement the interfaces for the used lifecyclehooks to get editor compiler errors when they are implemented incorrectly
+
+---
+#Angular 

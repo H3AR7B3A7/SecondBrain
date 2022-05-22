@@ -83,4 +83,4 @@ Pure function:
 
 
 ---
-#Typescript 
+#Angular
