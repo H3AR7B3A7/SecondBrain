@@ -77,9 +77,8 @@ Use the angular CLI where possible.
 
 ## Modules
 
--   Work in modules for different functionality, and try to make them work as a whole / unit.  
-    A rule of thumb is that when you navigate to a whole different route (in your topmost router outlet), you probably need a module.  
-    (The same goes for the top level in secondary outlets.)
+-   Work with self contained modules
+-   As a rule of thumb every feature should have 2 modules, one main module and a routing module.
 -   Declare components in the module they belong to, not the top module. (See hierarchy for more info.)
 -   Avoid exports and provides in the same module
 
@@ -88,6 +87,7 @@ Use the angular CLI where possible.
 -   It contains application level services like AuthService
 -   The core module will never be lazy loaded, so its services will always be available throughout the whole application
 -   It also holds interfaces and classes used by those services like User for this example
+-   (If it holds components it should be components that are used only once application wide, depending on the teams preference)
 -   Application level components like a navigation bar
 -   It should import CommonModule
 -   We add the CoreModule to the imports of the AppModule
@@ -97,9 +97,28 @@ Use the angular CLI where possible.
      imports: [ CommonModule ];
      exports: [ NavBarComponent ]
      declarations: [ NavBarComponent ]
-     // providers: [ AuthService ]
+     // providers: [ AuthService ]    <--- This could be considered instead of a Tree-Shakeable Provider in this case ???
 })
 export class CoreModule {}
+```
+
+-  Preventing core module to be imported in feature modules
+```typescript
+export class CoreModule extends EnsureModuleLoadedOnceGuard {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+        super(parentModule);
+    }
+}
+```
+-   Import guard
+```typescript
+export class EnsureModuleLoadedOnceGuard {
+    constructor(targetModule: any) {
+        if (targetModule) {
+            throw new Error(`${targetModule.constructor.name} has already been loaded. Import this module in the AppModule only.`);
+        }
+    }
+}
 ```
 
 ### Shared Module:
@@ -176,11 +195,21 @@ export class SomeModule {}
 export class AppRoutingModule { }
 ```
 
-## Hierarchy
+## File Structure / Hierarchy
 
+-   Keep the file structure rather flat
+	-   A feature module holds components
+	-   Those components can have very small components in them
+	-   No deeper nesting is required or advised
+	-   The flatter the structure, the better the oversight
+	-   Max 7 files per folder is a good rule of thumb
+-   Feature-based organization
+	-   Features are organized in their own folder
+	-   Features are self contained
+	-   Easy to find everything related to a feature
 -   Start creating components / services / custom pipes / directives / models in the component they belong to.
 -   Bubble them up to the first module they belong to when it is shared within the module.
--   Then bubble it up to a common shared module when it is shared outside the module.
+-   Then bubble it up to the shared module when it is shared outside the module.
 -   Lastly, bubble them up to a library when they are shared among applications.
 
 ## Models

@@ -43,5 +43,31 @@ https://codewithdan.me/angular-architecture-planning-example
 -   APIs
 -   More
 
+## Organizing Code
+
+-   Convention-based
+	-   Follow strict naming conventions
+	-   Related code may be separated
+	-   Can result in a lot of files in a folder in larger applications
+-   Feature-based
+	-   Features are organized in their own folder
+	-   Features are self contained
+	-   Easy to find everything related to a feature
+
+## Features & Modules
+
+## Libraries
+
+To create a lib in a separate repo
+> ng new test --create-application false
+
+To create and build the library
+> ng g library my-lib
+> ng build my-lib
+ 
+ To publish
+> npm publish
+
+
 ---
 #Angular #Architecture
