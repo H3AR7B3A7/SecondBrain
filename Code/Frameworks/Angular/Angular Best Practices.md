@@ -167,6 +167,18 @@ export class SomeModule {}
 
 -   Be mindful that angular routes should be in the right order. And the default value for pathMatch is 'prefix'. For example everything is prefixed by an empty string. We can use 'full' to match the whole path.
 -   When declaring routes in AppModule use RouterModule.forRoot(...) and RouterModule.forChild(...) in every other feature module
+-   Use child routes appropriately: They allow users to bookmark the specific components
+
+``` json
+{
+    path: 'somewhere/:id',
+    component: SomeComponent,
+    children: [
+        { path: 'edit', component: SomeEditComponent },
+        { path: 'details', component: SomeDetailsComponent },
+    ]
+}
+```
 -   Lazy load feature modules in routes
 
 ``` json
@@ -215,14 +227,45 @@ export class AppRoutingModule { }
 ## Models
 
 -   Always prefer interfaces over classes when the model doesn't require any supporting functions in it
+-   Start interfaces with a capital 'I'
 -   Only actual data models, presenting business logic end with .model.ts
+-   For complex types, consider cloning them
+	-   Shallow
+		-   Spread operator:  `clone = { ...original };`
+			-   Does not copy methods
+		-   Object assign: `let clone = Object.assign({}, original);`
+			-   Does not copy methods`
+	-   Deep : No one size fits all solution, the implementation depends on the object
+		-   Stringify & Parse: `let clone = JSON.parse(JSON.stringify(original));
+			-   Not all objects stringify well
+			-   Does not copy methods
+		-   Object create: `let clone = Object.create(original);`
+			-   Does copy methods
+			-   Not really cloning, creates new object from a prototype
+		-   Map the object manually
 
 ## Components
 
-- Imports
-	- Third party imports first
-	- An empty line as spacer
-	- Then imports from within our project
+### Container - Presentation Components
+
+#### Container component
+
+-   Manages the state by interacting with service/store
+-   Contains only minor presentation, like for example a header/title
+-   Passes state to presentation components using input properties
+
+#### Presentation component
+
+-   Presents/renders the data, but does not directly interact with state
+-   Communicates with container component using output properties
+-   Use OnPush as change detection strategies
+-   Using child components makes it easy to implement child routes when appropriate
+
+### Ordering
+-   Order of imports
+	-   Third party imports first
+	-   An empty line as spacer
+	-   Then imports from within our project
 -   Order of members
     -   private fields
     -   public fields
@@ -230,6 +273,9 @@ export class AppRoutingModule { }
     -   constructor
     -   getters/setters
     -   functions
+
+### Conventions
+
 -   Start private fields with _ and create a getter for them when they need to be accessed from outside the API or in tests.
 
 ``` typescript
@@ -240,20 +286,7 @@ get someClassMember() {
 }
 ```
 
--   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
--   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
--   Use the OnPush Changedetection strategy
-  For this to work we need to:
-	- Use immutable objects, because angular will detect changes by object reference
-	- Subscribe to our observables using the async pipe in the template, instead of subscribing in ngOnInit
-
-```typescript
-@Component({
-    // ...
-    changeDetection: ChangeDetectionStrategy.OnPush,
-})
-```
-
+-   Use $ behind an observable.
 -   Add prefixes to selectors that match the feature area they belong to
 
 ```typescript
@@ -279,7 +312,7 @@ applyFilter(filter: string) {
 }
 ```
 
--   Generally creating a component for a piece of functionality is usually a good thing, however when elements in the component have a lot of attributes (autofocus, autocomplete, disabled, ...) like buttons or text inputs, we would need to create input properties for all of them on that new component. In this case it might be better to not make for example a pair-of-buttons component.
+-   Generally creating a component for a piece of functionality is a good thing, however when elements in the component have a lot of attributes (autofocus, autocomplete, disabled, ...) like buttons or text inputs, we would need to create input properties for all of them on that new component. In this case it might be better to not make for example a pair-of-buttons component.
 
 ## Services
 
@@ -336,8 +369,20 @@ Let's say that you are shipping to ancient mobile browsers or ancient versions o
 
 ## RxJS
 
--   Use $ behind an observable.
--   Prevent subscribing to observables, use async pipes in the template instead.
+-   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
+-   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
+-   Use the OnPush Changedetection strategy
+  For this to work we need to:
+	- Use immutable objects, because angular will detect changes by object reference
+	- Subscribe to our observables using the async pipe in the template, instead of subscribing in ngOnInit
+
+```typescript
+@Component({
+    // ...
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+```
+
 -   Use the takeUntil operator to complete observables instead of unsubscribing.
 
 ``` typescript
