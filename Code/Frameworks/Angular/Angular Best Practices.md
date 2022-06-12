@@ -330,6 +330,67 @@ applyFilter(filter: string) {
 
 -   Generally creating a component for a piece of functionality is a good thing, however when elements in the component have a lot of attributes (autofocus, autocomplete, disabled, ...) like buttons or text inputs, we would need to create input properties for all of them on that new component. In this case it might be better to not make for example a pair-of-buttons component.
 
+### Communication
+
+There are always multiple options, but we should use the right tool for the right job:
+-   Data binding through Inputs and Outputs
+	- Ideal for non-deeply nested *container-presentation* component communication
+-   Event bus
+	-   Mediator pattern
+	-   Service acts as the middleman
+	-   Relies on subject / observable
+	-   Pro
+		-   Simple to use
+		-   Loosely coupled
+		-   Lightweight
+	- Con
+		-   Can sometimes be hard to maintain
+		-   Components don't know where data is coming from
+		-   We must remember to unsubscribe
+-   Observable service
+	-   Observer pattern (usually)
+	-   Also relies on subject / observable
+	-   Pro
+		-   Components know where the data is coming from
+	-   Con
+		-   Service exposes observable directly to components
+		-   Not as loosely coupled as an event bus
+
+
+Event bus:
+``` typescript
+private subject = new Subject<any>()
+
+on(event: Events, action; any): Subscription {
+	return this.subject.pipe(
+		filter((e: EmitEvent) => {
+			return e.name === event
+		}),
+		map((e: EmitEvent) => {
+			return e.value
+		})
+	).subscribe(action)
+}
+
+emit(event: EmitEvent) {
+	this.subject.next(event)
+}
+```
+
+```typescript
+export class EmitEvent {
+	constructor(public name: any, public value?: any) { }
+}
+export enum Events {
+	CustomerSelected
+}
+```
+
+Observable service:
+```typescript
+
+```
+
 ## Services
 
 ### Singleton
@@ -408,6 +469,31 @@ So in practice we need to:
 
 ## RxJS
 
+### Subjects
+
+-   Subject
+	-   Observers only get data that is emited after subscribing
+-   BehaviorSubject
+	-   Observers get the last value emited by the subject upon subscribing
+	-   Requires an initial value in constructor
+-   ReplaySubject
+	-   Observers can get any number or all previously emited values upon subscribing
+	-   Requires a size of the buffer in constructor
+-   AsyncSubject
+	-   Observers only get the last value when the sequence is completed
+
+Subjects are both an *observer* and an *observable*. We should keep our Subjects private, and use asObservable() to expose it, to prevent leaking the observer side of the Subject:
+
+``` typescript
+private someSubject = new Subject()
+
+get someSubject$() {
+      return this.someSubject.asObservable()
+}
+```
+
+### Best Practices
+
 -   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
 -   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
 
@@ -423,16 +509,6 @@ someObservable$.pipe(
 
 // To complete the observable
 this.stopFiring.next()
-```
-
--   When creating a Subject, use asObservable() to prevent leaking the observer side of the Subject.
-
-``` typescript
-private someSubject = new Subject()
-
-get someSubject$() {
-      return this.someSubject.asObservable()
-}
 ```
 
 -   Use timer for polling.
