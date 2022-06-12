@@ -229,7 +229,10 @@ export class AppRoutingModule { }
 -   Always prefer interfaces over classes when the model doesn't require any supporting functions in it
 -   Start interfaces with a capital 'I'
 -   Only actual data models, presenting business logic end with .model.ts
--   For complex types, consider cloning them
+
+### Immutability
+
+For complex types and for triggering OnPush changes, we want to clone objects, instead of mutating them:
 	-   Shallow
 		-   Spread operator:  `clone = { ...original };`
 			-   Does not copy methods
@@ -237,12 +240,25 @@ export class AppRoutingModule { }
 			-   Does not copy methods`
 	-   Deep : No one size fits all solution, the implementation depends on the object
 		-   Stringify & Parse: `let clone = JSON.parse(JSON.stringify(original));
-			-   Not all objects stringify well
+			-   Not all objects stringify well (dates, etc...)
 			-   Does not copy methods
 		-   Object create: `let clone = Object.create(original);`
 			-   Does copy methods
 			-   Not really cloning, creates new object from a prototype
-		-   Map the object manually
+		-   Immutable JS
+			- Requires package `npm install immutable`
+
+```typescript
+immutableSomethings = List<SomeObject>(originals)
+const somethings = this.immutableSomethings.toArray()
+fromJS(something).toJS() as Something
+```
+
+### Inheritance
+
+Try to prefer composition over inheritance and use it only in those rare cases where it absolutely makes sense.
+
+When two components are almost exactly the same (in terms of inputs and outputs), we can extend a base component which itself has no template.
 
 ## Components
 
@@ -258,7 +274,7 @@ export class AppRoutingModule { }
 
 -   Presents/renders the data, but does not directly interact with state
 -   Communicates with container component using output properties
--   Use OnPush as change detection strategies
+-   Use OnPush as change detection strategy
 -   Using child components makes it easy to implement child routes when appropriate
 
 ### Ordering
@@ -367,14 +383,7 @@ The use of trackBy it's a performance optimization and is usually not needed by 
 
 Let's say that you are shipping to ancient mobile browsers or ancient versions of IE: you might want to consider applying trackBy as a precaution in your larger tables, but it really depends on your system and the use case.
 
-## RxJS
-
--   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
--   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
--   Use the OnPush Changedetection strategy
-  For this to work we need to:
-	- Use immutable objects, because angular will detect changes by object reference
-	- Subscribe to our observables using the async pipe in the template, instead of subscribing in ngOnInit
+## OnPush Change Detection Strategy
 
 ```typescript
 @Component({
@@ -382,6 +391,25 @@ Let's say that you are shipping to ancient mobile browsers or ancient versions o
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 ```
+
+Benefits of using the OnPush Changedetection strategy
+-   Performance (component isn't checking until OnPush conditions are met)
+-   Prevent the presentation component from updating state it should get from the container/parent
+
+OnPush causes change detection to run when:
+-   An input property reference changes
+-   An output property / event emitter or DOM event fires
+-   Async pipe receives an event
+-   Change detection is manually invoked via ChangeDetectionRef
+
+So in practice we need to:
+-   Use immutable objects, because angular will detect changes by object reference
+-   Subscribe to our observables using the async pipe in the template, instead of subscribing in ngOnInit
+
+## RxJS
+
+-   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
+-   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
 
 -   Use the takeUntil operator to complete observables instead of unsubscribing.
 
