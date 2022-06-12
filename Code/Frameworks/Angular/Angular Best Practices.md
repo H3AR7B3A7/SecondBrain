@@ -246,7 +246,7 @@ For complex types and for triggering OnPush changes, we want to clone objects, i
 			-   Does copy methods
 			-   Not really cloning, creates new object from a prototype
 		-   Immutable JS
-			- Requires package `npm install immutable`
+			- Requires package `yarn add immutable`
 
 ```typescript
 immutableSomethings = List<SomeObject>(originals)
@@ -349,15 +349,21 @@ There are always multiple options, but we should use the right tool for the righ
 		-   We must remember to unsubscribe
 -   Observable service
 	-   Observer pattern (usually)
+	-   Service exposes observable directly to components
 	-   Also relies on subject / observable
 	-   Pro
+		-   Simple to use (subscribe / unsubscribe)
 		-   Components know where the data is coming from
+		-   Easier to maintain
+		-   Easy to share data between different layers
 	-   Con
-		-   Service exposes observable directly to components
 		-   Not as loosely coupled as an event bus
+		-   Variations in Subjects should be understood
+		-   Must remember to unsubscribe
 
 
-Event bus:
+#### Event bus
+
 ``` typescript
 private subject = new Subject<any>()
 
@@ -382,13 +388,47 @@ export class EmitEvent {
 	constructor(public name: any, public value?: any) { }
 }
 export enum Events {
-	CustomerSelected
+	SomeEvent
 }
 ```
 
-Observable service:
-```typescript
+#### Observable service
 
+```typescript
+somethings: Something[] = []
+
+// with immutable.js:
+// immutableSomethings = List<Something>()
+
+private somethingsSubject$ = new BehaviorSubject<Something[]>(this.somethings);
+somethingsChanged$ = this.somethingsSubject.asObservable();
+
+constructor(private cloner: CloneService) { }
+
+getSomethings() : Observable<Something[]> {
+	// with immutable.js:
+	// return of(this.immutableSomethings.toJS())
+	return of(this.somethings)
+}
+
+addSomething() : Observable<Something[]> {
+	let id = this.somethings[this.somethings.length - 1].id + 1
+	this.somethings.push({
+		id: id,
+		name: 'New Thing ' + id,
+		/* ... */
+	})
+	this.somethingsSubject$.next(this.somethings)
+	return of(this.somethings)
+}
+
+addSomethingClone() : Observable<Something[]> {
+	return this.addSomething().pipe(
+		map(things => {
+			return this.cloner.deepClone(things)
+		})
+	)
+}
 ```
 
 ## Services
@@ -492,11 +532,57 @@ get someSubject$() {
 }
 ```
 
-### Best Practices
+### Unsubscribing
 
--   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
--   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
+-   Unsubscribe in ngOnDestroy
 
+```typescript
+ngOnInit() {
+	this.sub = this.someEventBus.on(
+		Events.SomeEvent, (something => this.something = something))
+}
+
+ngOnDestroy() {
+	if (this.sub) {
+		this.sub.unsubscribe()
+	}
+}
+```
+
+-   AutoUnsubscribe decorator
+
+```typescript
+@AutoUnsubscribe()
+export class SomeComponent implements OnDestroy {
+	sub: Subscription
+
+	constructor(private someEventBus: SomeEventBusService) { }
+
+	ngOnInit() {
+		this.sub = this.someEventBus.on(
+			Events.SomeEvent, (something => this.something = something))
+	}
+}
+```
+
+-   SubSink ( `yarn add subsink`)
+
+```
+subs = new SubSink()
+
+constructor(private someEventBus: SomeEventBusService) { }
+
+ngOnInit() {
+	this.subs.sink = this.someEventBus.on(
+		Events.SomeEvent, (something => this.something = something))
+}
+
+ngOnDestroy() {
+	this.subs.unsubscribe()
+}
+```
+
+-   Let async pipes handle subscribing / unsubscribing
 -   Use the takeUntil operator to complete observables instead of unsubscribing.
 
 ``` typescript
@@ -511,6 +597,10 @@ someObservable$.pipe(
 this.stopFiring.next()
 ```
 
+### Best Practices
+
+-   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
+-   To transform data use RxJS pipes. Push data coming from the component itself to a subject when you need to combine it with other observables.
 -   Use timer for polling.
 
 ``` typescript
