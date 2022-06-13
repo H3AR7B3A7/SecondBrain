@@ -463,14 +463,38 @@ addSomethingClone() : Observable<Something[]> {
 
 ## Custom Pipes
 
--   Avoid impure pipes
--   Don't forget to let angular know it is a pure pipe
+### Functions vs Pipes
+Angular makes it easy to call functions from the template. However sometimes these functions can be called way more times than is needed (every time a change occurs in the template). Often it is better to use a pipe for performance.
+
+-   Avoid impure pipes (like a function it is called on any change)
+-   By default Angular uses pure pipes (called only when inputs are changed)
 
 ``` typescript
 @Pipe({
   name: 'someFilter',
   pure: true
 })
+```
+
+## Memo Decorator
+
+We can easily cache *primitive* values using the memo decorator to avoid repeated computations.
+
+```typescript
+import memo from 'memo-decorator'
+
+@Pipe({ name: 'somepipe'})
+export class SomePipe implements PipeTransform {
+
+	@memo()
+	transform(value: any, args?: any): any {
+		return value.someField * 2
+	}
+}
+```
+
+```
+yarn add memo-decorator
 ```
 
 ## Directives
@@ -597,6 +621,69 @@ someObservable$.pipe(
 this.stopFiring.next()
 ```
 
+### Useful Operators for HttpClient
+
+#### forkJoin
+Make two calls simultaneously:
+
+```typescript
+getCharactersAndPlanets() {
+	return forkJoin(
+		this.getCharacters(),
+		this.getPlanets()
+	).pipe(
+		map((res) => {
+			return { characters: res[0], planets: res[1]}
+		}),
+		catchError(error => of(error))
+	)
+}
+```
+
+#### switchMap
+Make a sequential call adding data to a first call:
+
+```typescript
+getCharacterAndHomeworld() {
+	return this.http.get(url)
+		.pipe(
+			switchMap(character => {
+				return this.http.get(character['homeworld'])
+					.pipe(
+						map(hw => {
+							character['homeworld'] = hw
+							return character
+						})
+					)
+			})
+		)
+}
+```
+
+#### mergeMap
+Make sequential calls adding data for each result of the first call:
+
+```typescript
+getCharactersAndHomeworlds() {
+	return this.http.get(url)
+		.pipe(
+			swotchMap(res => {
+				return from(res['results'])
+			}),
+			mergeMap((person: any) => {
+				return this.http.get(person['homeworld'])
+					.pipe(
+						map(hw => {
+							person['homeworld'] = hw
+							return person
+						})
+					)
+			}),
+			toArray()
+		)
+}
+```
+
 ### Best Practices
 
 -   Use async pipes in the template whenever possible. You hardly ever need manual subscriptions.
@@ -613,9 +700,81 @@ someObservable$ = timer(1, 5000).pipe(
 )
 ```
 
-## State
+## State Management
 
-...
+Goals:
+-   Single source of truth
+-   Predictability
+-   Immutability
+-   Ability to track state changes
+
+Types of state:
+-   Application state
+-   Session state
+-   Entity state
+
+Multiple options:
+-   Services
+-   NgRx
+-   NgRx-data (NgRx wrapper - less code)
+-   Observable Store
+-   Akita
+-   Ngxs
+-   MobX
+-   Some custom implementation
+
+### Services
+
+-   Simplest solutions
+-   Problems arise when multiple services manage the same state in different places
+-   Can be managed if those services use the same store service
+-   Need for good inter-team communication
+
+### NgRx
+
+-   Redux + RxJS
+-   Single source of truth
+-   Immutable Data
+-   Provides consistency across teams
+-   Diagnostic tool to watch store
+-   Flow: Component -> Actions -> ( Effects -> Server -> Effects -> Actions -> )
+		Reducers -> State in Store -> Selectors -> Component
+-   A lot of code
+
+```
+yarn add @ngrx/effect
+yarn add @ngrx/entity
+yarn add @ngrx/store
+yarn add @ngrx/store-devtools
+```
+
+### NgRx-data
+
+-   NgRx - but simplified
+-   Eliminate NgRx boilerplate
+-   One line of code per entity
+-   Customize as needed
+-   Flow: Component -> ngrx-data-service (entity wrapper) -> Component
+
+```
+yarn add @ngrx/data
+```
+
+### Observable Store
+
+Observable Store provides a simple way to manage state in a front-end application while achieving many of the key goals offered by more complex state management options.
+
+-   Single source of truth
+-   State is read-only / immutable
+-   Provide state change notifications to any subscriber
+-   Track state change history
+-   Minimal amount of code required
+-   Works with any library / framework
+-   Flow: Component -> Service (Observable Store wrapper) -> Component
+
+```
+yarn add @codewithdan/observable-store
+```
 
 ## Bundle Sizes
 
@@ -632,6 +791,76 @@ And build the app with sourceMaps, by default Angular will build a production bu
 In the dist folder under our project run SME on the bundle you want to inspect (main bundle), eg:
 
 > source-map-explorer main.946363c07a664402.js
+
+## Security Considerations
+
+-   CORS
+	-   CORS allows a browser to call a different domain or port
+	-   Enable on the server as needed
+	-   Limit allowed domains, headers, and methods
+-   CSRF / XSRF
+	-   Enable CSRF on the server if using cookie authentication
+	-   Angular will read a token from a cookie set by the server and add it to the request
+	-   Change the cookie/header name as appropriate for your server
+	-   Server will validate the header value
+-   Route Guards
+	-   Define route guards needed by applications based on user or group/role
+	-   Keep in mind that route guards  don't "secure" an application
+	-   Rely on the server to secure data, APIs, etc.
+-   Sensitive Data
+	-   Anyone can access the browser developer tools to view variables, local/session storage, cookies, etc.
+	-   Do not store sensitive data (secrets, keys, passwords, etc.) in the browser
+	-   If an API requires a "secret" to be passed, consider calling it through a "middle-man" service that you own
+	-   Use JWT tokens where possible for server authentication (set appropriate TTL expiration for tokens)
+
+### HttpInterceptors
+
+-   HTTP Interceptors provide a centralized place to hook into requests/responses
+-   Add withCredentials when using cookies and calling via CORS
+
+```typescript
+@Injectable()
+export class CorsInterceptor implements HttpInterceptor {
+
+	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		const authReq = req.clone({
+			withCredentials: true,
+			headers: req.headers.set('X-requested-With', 'XMLHttpRequest')
+		})
+		return next.handle(authReq)
+	}
+}
+```
+
+-   Interceptors can be used to pass tokens required by services
+
+```typescript
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+
+	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		const authHeader = this.authService.getAuthToken()
+		const authReq = req.clone({
+			headers: req.headers.set('Authorization', authHeader)
+		})
+		return next.handle(authReq)
+	}
+}
+```
+
+-   Interceptors can be provided in the Core module
+-   Since more than one interceptor can be used, set multi to true
+
+```typescript
+@NgModule({
+	providers: [{
+		provide: HTTP_INTERCEPTORS,
+		useClass: AuthInterceptor,
+		multi: true
+	}]
+})
+export class CoreModule {}
+```
 
 ---
 #Angular #BestPractice 
