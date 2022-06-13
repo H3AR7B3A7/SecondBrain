@@ -1,4 +1,5 @@
 # Angular Best Practices
+
 Some best practices for [[Angular]] projects.
 Be sure to also check out the [Official Angular Style Guide](https://angular.io/guide/styleguide).
 
@@ -50,9 +51,11 @@ saveUser(user): Observable<any> {
 Refactor large functions into  well named smaller ones.
 
 ## Angular CLI
+
 Use the angular CLI where possible.
 
-### Example project structure
+### Example Project Structure
+
 -   ng n my-project --routing --style scss
 -   ng g m core
 -   ng g m shared
@@ -264,13 +267,13 @@ When two components are almost exactly the same (in terms of inputs and outputs)
 
 ### Container - Presentation Components
 
-#### Container component
+#### Container Component
 
 -   Manages the state by interacting with service/store
 -   Contains only minor presentation, like for example a header/title
 -   Passes state to presentation components using input properties
 
-#### Presentation component
+#### Presentation Component
 
 -   Presents/renders the data, but does not directly interact with state
 -   Communicates with container component using output properties
@@ -278,6 +281,7 @@ When two components are almost exactly the same (in terms of inputs and outputs)
 -   Using child components makes it easy to implement child routes when appropriate
 
 ### Ordering
+
 -   Order of imports
 	-   Third party imports first
 	-   An empty line as spacer
@@ -361,8 +365,7 @@ There are always multiple options, but we should use the right tool for the righ
 		-   Variations in Subjects should be understood
 		-   Must remember to unsubscribe
 
-
-#### Event bus
+#### Event Bus
 
 ``` typescript
 private subject = new Subject<any>()
@@ -392,7 +395,7 @@ export enum Events {
 }
 ```
 
-#### Observable service
+#### Observable Service
 
 ```typescript
 somethings: Something[] = []
@@ -463,7 +466,8 @@ addSomethingClone() : Observable<Something[]> {
 
 ## Custom Pipes
 
-### Functions vs Pipes
+### Functions Vs Pipes
+
 Angular makes it easy to call functions from the template. However sometimes these functions can be called way more times than is needed (every time a change occurs in the template). Often it is better to use a pipe for performance.
 
 -   Avoid impure pipes (like a function it is called on any change)
@@ -624,6 +628,7 @@ this.stopFiring.next()
 ### Useful Operators for HttpClient
 
 #### forkJoin
+
 Make two calls simultaneously:
 
 ```typescript
@@ -641,6 +646,7 @@ getCharactersAndPlanets() {
 ```
 
 #### switchMap
+
 Make a sequential call adding data to a first call:
 
 ```typescript
@@ -661,6 +667,7 @@ getCharacterAndHomeworld() {
 ```
 
 #### mergeMap
+
 Make sequential calls adding data for each result of the first call:
 
 ```typescript
