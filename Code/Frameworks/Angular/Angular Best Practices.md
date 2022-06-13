@@ -523,6 +523,15 @@ The use of trackBy it's a performance optimization and is usually not needed by 
 
 Let's say that you are shipping to ancient mobile browsers or ancient versions of IE: you might want to consider applying trackBy as a precaution in your larger tables, but it really depends on your system and the use case.
 
+#### ngIf - then - else
+```typescript
+<ng-container *ngIf="condition;then this; else that"></ng-container>
+
+<ng-template #this>Displayed when condition = true</ng-template>
+
+<ng-template #that>Displayed when condition = false</ng-template>
+```
+
 ## OnPush Change Detection Strategy
 
 ```typescript
