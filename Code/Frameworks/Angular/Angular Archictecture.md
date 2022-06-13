@@ -71,3 +71,4 @@ To create and build the library
 
 ---
 #Angular #Architecture
+## Structuring Components

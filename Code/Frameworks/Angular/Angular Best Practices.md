@@ -3,18 +3,20 @@
 Some best practices for [[Angular]] projects.
 Be sure to also check out the [Official Angular Style Guide](https://angular.io/guide/styleguide).
 
-## LIFT
+## Basic Principles
+
+### LIFT
 
 - Locate code quickly
 - Identify code at a glace
 - Flattest structure possible
 - Try to be DRY
 
-## Single Responsibility Principle
+### Single Responsibility Principle
 
 A single class (component, service, ...) or modules should have one responsibility.
 
-## Immutability
+### Immutability
 
 Create new objects instead of mutating existing ones.
 For example:
@@ -46,7 +48,7 @@ saveUser(user): Observable<any> {
 }
 ```
 
-## Small Functions
+### Small Functions
 
 Refactor large functions into  well named smaller ones.
 
@@ -143,6 +145,7 @@ export class CoreModule {}
 ### Feature Module:
 
 -   Lazy load the feature module (Read the topic about lazy loading in Routing)
+-   Make sure to not include the feature module (for lazy loading) or its components in the AppModule
 
 ``` typescript
 @NgModule({  
@@ -257,12 +260,6 @@ const somethings = this.immutableSomethings.toArray()
 fromJS(something).toJS() as Something
 ```
 
-### Inheritance
-
-Try to prefer composition over inheritance and use it only in those rare cases where it absolutely makes sense.
-
-When two components are almost exactly the same (in terms of inputs and outputs), we can extend a base component which itself has no template.
-
 ## Components
 
 ### Container - Presentation Components
@@ -287,12 +284,20 @@ When two components are almost exactly the same (in terms of inputs and outputs)
 	-   An empty line as spacer
 	-   Then imports from within our project
 -   Order of members
-    -   private fields
-    -   public fields
-    -   observables
-    -   constructor
-    -   getters/setters
-    -   functions
+	-   public fields
+	-   private fields
+	-   @Input
+	-   @Output
+	-   @Viewchild
+	-   observables
+	-   constructor
+	-   getters/setters
+	-   public functions
+	-   private functions
+-   Order in template
+    -   property bindings
+    -   event bindings
+    -   other directives
 
 ### Conventions
 
@@ -434,6 +439,12 @@ addSomethingClone() : Observable<Something[]> {
 }
 ```
 
+### Inheritance
+
+Try to prefer composition over inheritance and use it only in those rare cases where it absolutely makes sense.
+
+When two components are almost exactly the same (in terms of inputs and outputs), we can extend a base component which itself has no template.
+
 ## Services
 
 ### Singleton
@@ -480,7 +491,7 @@ Angular makes it easy to call functions from the template. However sometimes the
 })
 ```
 
-## Memo Decorator
+### Memo Decorator
 
 We can easily cache *primitive* values using the memo decorator to avoid repeated computations.
 
