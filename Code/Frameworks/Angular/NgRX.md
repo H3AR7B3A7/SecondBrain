@@ -79,8 +79,74 @@ Pure function:
 
 ## Install The Store
 > ng add @ngrx/store
+> ng add @ngrx/store@latest --no-minimal --statePath core/reducers
 
+## Install The Devtools
+- Install Chrome Redux DevTools
+- Run
+> ng add @ngrx/store-devtools@latest
+- Initialize the devtools module
 
+## Install Effects
+> ng add @ngrx/effects@latest
+
+### Operators in Effects
+SwitchMap
+- Cancels the current subscription/request and can cause race conditions
+- Use for get requests or cancelable requests like searches
+
+ConcatMap
+- Runs subscriptions/requests in order and is less performant
+- Use for get, post and put requests when order is important
+
+MergeMap
+- Runs subscription/requests in parallel and is more performant
+- Use for get, put, post and delete requests when order is not important
+
+ExhaustMap
+- Ignores all subsequent subscriptions/requests until it completes
+- Use for login when you don't want more requests until the initial one is complete
+
+## State Module
+In some cases we might want to share state between 2 or more lazy loaded modules.
+
+![state-module](state-module.png)
+
+## Additional NgRx Libraries
+ngrx/entity
+- Helps with CRUD operations on collections of entities
+- Provides helper functions for managing entity collections
+- Reduces the amount of boilerplate code needed to manage entity collections
+
+ngrx/schematics
+- Helps with scaffolding new NgRx projects
+  - ng generate store
+  - ng generate reducer
+  - ng generate action
+  - ng generate effect
+  - ng generate feature
+  - ng generate container
+  - ng generate entity
+
+ngrx/router-store
+- Connects the router to the store
+- Dispatches router navigation actions
+
+ngrx/data
+- Abstracts away the NgRx entity code
+- Configuration and convention, not code
+  - No actions or action creators
+  - No reducers
+  - No selectors
+  - No effects
+  - No code generation
+- Extension points for customization
+
+ngrx/component (experimental)
+- Set of Helpers to enable more fully reactive applications
+  - ngrxPush pipe
+  - ngrxLet directive
+  - ...
 
 ---
 #Angular
