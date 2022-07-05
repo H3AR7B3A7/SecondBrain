@@ -78,11 +78,26 @@ We can find more information [here](https://maven.apache.org/install.html).
   
 Basic example:  
   
-```xml  
-  
+```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0">  
-    <groupId>be.dog.d.steven</groupId>    <artifactId>HelloWorld</artifactId>    <version>1.0-SNAPSHOT</version>    <modelVersion>4.0.0</modelVersion>    <packaging>jar</packaging>  
-    <build>        <plugins>            <plugin>                <groupId>org.apachi.maven.plugins</groupId>                <artifactId>maven-compiler-plugin</artifactId>                <version>3.8.0</version>                <configuration>                    <release>12</release>                </configuration>            </plugin>        </plugins>    </build></project>  
+    <groupId>be.dog.d.steven</groupId>
+    <artifactId>HelloWorld</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>  
+    <build>
+	    <plugins>
+		    <plugin>
+			    <groupId>org.apachi.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+				    <release>12</release>
+			    </configuration>
+		    </plugin>
+	    </plugins>
+    </build>
+</project>  
 ```  
   
 ## Commands / goals  
