@@ -217,3 +217,175 @@ We can exclude them using exclusions.
 ```  
   
 *To be used as a last resort.*
+
+## Repositories  
+  
+Local repository  
+- ~/.m2  
+  
+Super pom.xml  
+- Maven installation  
+- repo.maven.apache.org  
+  
+Corporate Repository  
+- Nexus (= central)  
+- Artifactory  
+  
+```xml  
+<repositories>  
+  <repository>  
+    <id>spring-snapshot</id>  
+    <name>Spring Maven SNAPSHOT Repository</name>  
+    <url>http://repo.springsource.org/libs/snapshot</url>  
+    <snapshots>  
+      <enabled>true</enabled>  
+    </snapshots>  
+    <releases>  
+      <enabled>false</enabled>  
+    </releases>  
+  </repository>  
+</repositories>  
+```  
+  
+For plugins:  
+  
+```xml  
+<pluginRepositories>  
+  <pluginRepository>  
+    <id>acme corp</id>  
+    <name>Acme Internal Corporate Repository</name>  
+    <url>http://acmecorp.com/plugins</url>  
+    <snapshots>  
+      <enabled>true</enabled>  
+    </snapshots>  
+    <releases>  
+      <enabled>true</enabled>  
+    </releases>  
+  </pluginRepository>  
+</pluginRepositories>  
+```
+
+## Plugins  
+  
+### Goals  
+  
+Plugins installed with Maven included in the Super pom. They are inherently added to the effective pom.  
+However, we can override the default implementations.  
+  
+  
+For example the clean plugin:  
+  
+```xml  
+<plugin>  
+  <artifactId>maven-clean-plugin</artifactId>  
+  <version>3.1.0</version>  
+  <execution>  
+    <id>clean</id>  
+    <phase>clean</phase>  
+    <goals>  
+      <goal>clean</goal>  
+    </goals>  
+  </execution>  
+</plugin>  
+```  
+  
+### Phases  
+  
+- validate : validate project and structure  
+- compile : compile any source in the project  
+- test : test the compiled code  
+- package : packages the code in the specified package type  
+- integration-test : deploy and run integration tests  
+- verify : run checks to verify integrity  
+- install : install package in local repo  
+- deploy : copy package to remote repo  
+  
+### Compiler Plugin  
+  
+- Invokes javac  
+- Defaults older (Java 7)  
+- Configuration  
+  - fork  
+  - memory  
+  - source/target  
+  
+```xml  
+<plugin>  
+    <groupId>org.apache.maven.plugins</groupId>  
+    <artifactId>maven-compiler-plugin</artifactId>  
+    <version>3.8.0</version>  
+    <configuration>  
+        <release>12</release>  
+    </configuration>  
+</plugin>  
+```  
+  
+*Required to add to pom since Java 8.*  
+  
+### Jar Plugin  
+  
+- Package  
+- Package phase  
+- Configuration  
+  - includes/excludes  
+  - manifest  
+  
+```xml  
+<plugin>  
+  <groupId>org.apache.maven.plugins</groupId>  
+  <artifactId>maven-jar-plugin</artifactId>  
+  <version>3.1.2</version>  
+  <configuration>  
+    <includes>**/*.xml</includes>  
+  </configuration>  
+</plugin>  
+```  
+  
+### Source Plugin  
+  
+- Package source code  
+- Package phase  
+  - Often overridden to later phase  
+  
+```xml  
+<plugin>  
+  <groupId>org.apache.maven.plugins</groupId>  
+  <artifactId>maven-source-plugin</artifactId>  
+  <version>3.1.0</version>  
+  <executions>  
+    <execution>  
+      <goals>  
+        <goal>jar</goal>  
+      </goals>  
+      <phase>install</phase>  
+    </execution>  
+  </executions>  
+</plugin>  
+```  
+  
+### Javadoc Plugin  
+  
+- Package javadocs  
+- Package phase  
+  - Often overridden to later phase  
+- Defaults  
+  - Many customization options  
+  
+```xml  
+<plugin>  
+  <groupId>org.apache.maven.plugins</groupId>  
+  <artifactId>maven-javadoc-plugin</artifactId>  
+  <version>3.1.0</version>  
+  <executions>  
+    <execution>  
+      <goals>  
+        <goal>jar</goal>  
+      </goals>  
+      <phase>install</phase>  
+    </execution>  
+  </executions>  
+</plugin>  
+```
+
+---
+#Maven #BuildTool
