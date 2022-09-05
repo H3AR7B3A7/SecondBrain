@@ -136,8 +136,8 @@ export class EnsureModuleLoadedOnceGuard {
 ``` typescript
 @NgModule({  
      imports: [ CommonModule ],  
-     exports: [ LoadingSpinnerComponent ],  
-     declarations: [ LoadingSpinnerComponent, ComonModule ],  
+     exports: [ LoadingSpinnerComponent, CommonModule ],  
+     declarations: [ LoadingSpinnerComponent ],  
 })  
 export class CoreModule {}
 ```
@@ -889,5 +889,12 @@ export class AuthInterceptor implements HttpInterceptor {
 export class CoreModule {}
 ```
 
+## Testing
+
+Consider switching out Karma for Jest:
+
+> ng add @briebug/jest
+
+Here's an interesting [article](https://timdeschryver.dev/blog/integrate-jest-into-an-angular-application-and-library?#adding-jest)
 ---
 #Angular #BestPractice 
