@@ -341,5 +341,9 @@ For website
 For nodeservice
 > docker exec -it nodeservice /bin/sh
 
+When using Docker with [[WSL]] and Virtualbox, docker might not launch if the `hypervisorlaunchtype` is set to off. To fix this run the following command and restart the system.
+
+> bcdedit /set hypervisorlaunchtype auto
+
 ---
 #Docker

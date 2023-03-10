@@ -51,7 +51,9 @@ Resources > WSL Integration > Toggle distribution(s)
 To grant the user permissions to use docker in in the kernel:
 >  sudo chmod 666 /var/run/docker.sock
 
+When using both [[WSL]] and Virtualbox, the shell might not launch if the `hypervisorlaunchtype` is set to off. To fix this run the following command and restart the system.
 
+> bcdedit /set hypervisorlaunchtype auto
 
 
 ---
