@@ -156,7 +156,13 @@ public $RETURN_TYPE$ $NAME$($INPUT$) {
 - Save actions  
 - Code with me  
 - CommitPrefix  
-- Pre Commit Hook Plugin  
+- Pre Commit Hook Plugin
+- Apache Camel
+- AWS Toolkit
+- ESLint Restart Service Action
+- Nx Console
+- MDX
+- 
   
 ### Cosmetic  
   
@@ -165,6 +171,9 @@ public $RETURN_TYPE$ $NAME$($INPUT$) {
 - Nyan Progress Bar  
 - Rainbow Brackets  
 - Presentation assistant
+- CodeGlance
+- Gitmoji
+- 
 
 ## Interesting actions  
   
