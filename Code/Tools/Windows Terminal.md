@@ -1,9 +1,12 @@
 # Windows Terminal
+
 [Official Documentation](https://docs.microsoft.com/en-gb/windows/terminal/) [Download](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab)  
   
 Windows Terminal is a multi-tabbed command-line front-end that Microsoft has developed for [[Windows]] as a replacement for Windows Console. It can run any command-line app, including all Windows terminal emulators, in a separate tab. It is pre-configured to run Command Prompt, [[PowerShell]], WSL, SSH, and [[Azure]] Cloud Shell Connector.
   
-### Profiles  
+
+### Profiles
+
   
 Other shells that were added include: PowerShell 7, Git Bash, Python, JShell  
 These tools and/or languages will have to be installed separately.  
@@ -14,15 +17,28 @@ These tools and/or languages will have to be installed separately.
 - [JShell](https://www.oracle.com/java/technologies/javase-downloads.html)  
   
   
-### Use as Administrator  
+
+### Use as Administrator
+
   
 To start your terminal elevated from your taskbar just create a shortcut with the following as location:  
   
  C:\Windows\System32\cmd.exe /c start /b wt  
 Icons modified to make your terminal look better, are provided in the [img](https://github.com/H3AR7B3A7/WindowsTerminalAndPowershell/tree/master/img) folder of this repository as well.  
   
-  
-### Running .bat files in terminal  
+
+### Start with Keyboard Shortcut
+
+Create shortcut to:
+> C:\Windows\System32\cmd.exe /c start /b wt
+
+In:
+> C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+
+_Edit the properties to set a keyboard shortcut._
+
+### Running .bat Files in Terminal
+
   
 In regedit navigate to:  
   
@@ -31,7 +47,9 @@ Change the default value to:
   
  "C:\Users\StevenD'Hondt\AppData\Local\Microsoft\WindowsApps\wt.exe" -d . -p "Command Prompt" "%1" %*  
   
-### Settings  
+
+### Settings
+
 ```json
 {  
   "$schema": "https://aka.ms/terminal-profiles-schema",  
@@ -182,7 +200,8 @@ Change the default value to:
 }
 ```
 
-## Shortcuts  
+## Shortcuts
+
 - <kbd>Ctrl</kbd> + <kbd>L</kbd> &nbsp; - &nbsp; Clear the pane  
 
 - <kbd>Alt</kbd> + <kbd>Arrow Key</kbd> &nbsp; - &nbsp; Change active pane  
