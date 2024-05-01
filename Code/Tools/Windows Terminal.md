@@ -29,17 +29,23 @@ Icons modified to make your terminal look better, are provided in the [img](http
 
 ### Start with Keyboard Shortcut
 
-Create shortcut to:
-> C:\Windows\System32\cmd.exe /c start /b wt
+Find the location to wt.exe:
 
-In:
-> C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+![[Pasted image 20240501210201.png]]
+
+Create a shortcut to it in:
+> C:/ProgramData/Microsoft/Windows/Start Menu/Programs
 
 _Edit the properties to set a keyboard shortcut._
 
+
+### Quake
+
+Under `settings > actions`: Find the open/close quake shortcut
+
+
 ### Running .bat Files in Terminal
 
-  
 In regedit navigate to:  
   
  HKEY_CLASSES_ROOT\batfile\shell\open\command  
