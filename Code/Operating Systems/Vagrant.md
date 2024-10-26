@@ -6,6 +6,10 @@ It tries to simplify the software configuration management of virtualization in 
 
 - [Download](https://developer.hashicorp.com/vagrant/downloads) and install vagrant
 
+```
+choco install vagrant
+```
+
 ## Create an external switch via Hyper-V Manager, follow these steps:
 
 1.  Open Hyper-V Manager on your host machine.
@@ -64,3 +68,44 @@ You can set your default provider on a user level by using the VAGRANT_DEFAULT_P
 
 `[Environment]::SetEnvironmentVariable("VAGRANT_DEFAULT_PROVIDER", "hyperv", "User")`
 
+## Ubuntu
+
+[Discover Vagrant Boxes](https://app.vagrantup.com/boxes/search)
+
+Cmd:
+
+```
+vagrant box add bento/ubuntu-20.04
+```
+
+```
+vagrant init bento/ubuntu-20.04
+vagrant up
+```
+
+Vagrant file:
+
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2204"
+  config.vm.network "private_network", ip: "192.168.33.10"
+end
+```
+
+```
+vagrant ssh
+sudo apt install nginx -y
+sudo service nginx start
+ifconfig
+```
+
+_Default password: vagrant_
+
+System 'hosts' file:
+
+```
+192.168.33.10    box1.com
+```
+
+
+---
