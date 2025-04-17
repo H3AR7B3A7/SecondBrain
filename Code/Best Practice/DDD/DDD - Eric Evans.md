@@ -1,5 +1,5 @@
 # Domain Driven Design (DDD)
-By Eric Evans  
+By Eric Evans 
 
 DDD is all about [[Best Practice(s)]] for project structure and development for specific business needs.
 
@@ -150,4 +150,5 @@ We can find an interesting article about the Hexagonal / Onion Domain Driven arc
 [here](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/).   
   
 ---  
+
 *Work in progress...*

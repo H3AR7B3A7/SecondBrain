@@ -18,3 +18,7 @@ Many client-specific interfaces are better than one general-purpose interface.
   
 ## Dependency Inversion  
 We should depend upon abstractions, not concretions.
+
+---
+
+

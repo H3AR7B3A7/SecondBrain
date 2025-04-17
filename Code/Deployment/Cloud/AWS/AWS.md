@@ -7,6 +7,6 @@ The AWS technology is implemented at server farms throughout the world, and main
 
 ## Services
 
-
+- [[EC2]]
 ---
 #Cloud #AWS 

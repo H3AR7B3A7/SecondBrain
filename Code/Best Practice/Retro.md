@@ -18,3 +18,8 @@ A good Retrospective is an important part of [[Agile Project Management]].
 ### End
 - Next person to do retro
 - Review the retro
+
+
+---
+
+*Work in progress...*

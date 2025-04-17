@@ -7,4 +7,5 @@ This document will describe scrum organization and methodology in more detail.
 You can check out [[Agile Project Management]] for more information on other Agile practices.  
   
 ---  
+
 *Work in progress...*
