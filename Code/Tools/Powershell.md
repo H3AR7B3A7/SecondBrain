@@ -62,16 +62,19 @@ For Powershell 7:
 > C:\Users\<UserName>\Documents\PowerShell  
 
 ```bash
-# Shorten the current directory path to just the folder
-function prompt{
-  $check = $pwd.drive
-  if ( "$check`:\" -eq $pwd.path){
-    "$pwd>"
-  }else{
-    $p = Split-Path -leaf -path (Get-Location)
-    "~ $p\> "
-  }
-}
+## Shorten the current directory path to just the folder
+# function prompt{
+#   $check = $pwd.drive
+#   if ( "$check`:\" -eq $pwd.path){
+#     "$pwd>"
+#   }else{
+#     $p = Split-Path -leaf -path (Get-Location)
+#     "~ $p\> "
+#   }
+# }
+
+# Oh My Posh Theme
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\if_tea.omp.json" | Invoke-Expression
 
 # Change or create files
 function touch {
@@ -89,13 +92,35 @@ function touch {
 
 # Encode
 function encode([string]$arg){
-    [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($arg))
+	[Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($arg))
 }
 
 # Decode
 function decode([string]$arg) {
-    [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($arg))
+	[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($arg))
 }
+
+# Hard Remove Directory
+function hard-remove {
+    Param(
+        [Parameter(Mandatory=$true)]
+        [string]$Path
+    )
+
+    if (Test-Path -LiteralPath $Path -PathType Container) {
+        Write-Warning "Attempting to forcefully remove directory and all its contents: '$Path'"
+        try {
+            Remove-Item -Path $Path -Recurse -Force
+            Write-Host "Successfully removed directory: '$Path'"
+        } catch {
+            Write-Error "Error occurred while trying to remove directory '$Path': $($_.Exception.Message)"
+        }
+    } else {
+        Write-Warning "Directory '$Path' does not exist or is not a directory."
+    }
+}
+
+
 ```
 
 ## Oh My Posh
