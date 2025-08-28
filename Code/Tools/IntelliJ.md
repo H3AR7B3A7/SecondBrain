@@ -82,8 +82,10 @@ IDEA [here](https://www.jetbrains.com/help/idea/http-client-in-product-code-edit
 - <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Left/Right</kbd>: Grow selection left/right  
   
 - <kbd>Ctrl</kbd> + <kbd>K</kbd>: Commit  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + K</kbd>: Push  
-- <kbd>Alt</kbd> + <kbd>1</kbd>: Project folder  
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>: Push  
+- <kbd>Alt</kbd> + <kbd>1</kbd>: Project folder view  
+- <kbd>Alt</kbd> + <kbd>0</kbd> : Commit view 
+- <kbd>Alt</kbd> + <kbd>9</kbd> : Git view
 - <kbd>Alt</kbd> + <kbd>Insert</kbd>: Generate file or code  
 - <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>: Open Settings  
   
@@ -92,13 +94,19 @@ IDEA [here](https://www.jetbrains.com/help/idea/http-client-in-product-code-edit
 - <kbd>Ctrl</kbd> + <kbd>B</kbd>: Find usage in code  
 - <kbd>Shift</kbd> x2: Search everywhere  
 - <kbd>Ctrl</kbd> + <kbd>F</kbd>: Find in file  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + F</kbd>: Find in project / module / directory / scope  
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>: Find in project / module / directory / scope  
 - <kbd>Ctrl</kbd> + <kbd>R</kbd>: Find and replace in file  
 - <kbd>Ctrl</kbd> + <kbd>F12</kbd>: Show members  
 - <kbd>F11</kbd> : Bookmark  
 - <kbd>Ctrl</kbd> + <kbd>F11</kbd> : Mnemonic bookmark  
 - <kbd>Shift</kbd> + <kbd>F11</kbd> : Show bookmarks  
 - <kbd>Ctrl</kbd> + <kbd>`</kbd> : Show quick switch list
+
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> : View source in popup window
+- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> : Open refactor menu
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>µ</kbd> : Open branch menu
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open action menu
+	- <kbd>Alt</kbd> + <kbd>Enter</kbd> : Assign shortcut
   
 Some other functions do not have keyboard shortcuts, you might want to consider assigning some of these:  
   
