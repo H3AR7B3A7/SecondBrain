@@ -17,8 +17,13 @@ To have a Spring project live reload your changes:
   
 - Add devtools dependencies to your pom.xml  
   
-    ```xml  
- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> <optional>true</optional> <scope>runtime</scope> </dependency>  
+```xml  
+ <dependency>
+	 <groupId>org.springframework.boot</groupId>
+	 <artifactId>spring-boot-devtools</artifactId>
+	 <optional>true</optional>
+	 <scope>runtime</scope>
+ </dependency>  
  ```  
 - In your intellij IDEA go to: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> ->build,execution,deployment->compiler  
   - Select build project automatically  
@@ -110,9 +115,17 @@ IDEA [here](https://www.jetbrains.com/help/idea/http-client-in-product-code-edit
   
 Some other functions do not have keyboard shortcuts, you might want to consider assigning some of these:  
   
-- Extract interface  
-  
+- Extract to interface 
+- Extract to abstract class
+- Pull members up
+
 *(Tip: <kbd>Alt</kbd> + <kbd>Numpad 0 - 9</kbd> makes for 10 easy extra shortcuts you can use to suit your needs.)*
+
+## Macros
+
+_We can also record macro's, in the action menu, choose start/stop macro. We can also bind the macro's to key bindings._
+
+One interesting one is recording just a <kbd>→</kbd> and bind it to <kbd>Shift</kbd> + <kbd>Space</kbd>, because tab is relatively unreliable to jump out of brackets.
 
 ## Live Templates  
   
