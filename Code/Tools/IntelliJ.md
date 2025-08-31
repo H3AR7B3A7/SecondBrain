@@ -65,54 +65,115 @@ IDEA [here](https://www.jetbrains.com/help/idea/http-client-in-product-code-edit
   
 ## Interesting Keyboard Shortcuts  
 
-- <kbd>Alt</kbd> + <kbd>Enter</kbd>: Show inspections / intentions / fixes  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd>: Code suggestions  
-- <kbd>Ctrl</kbd> + <kbd>P</kbd>: Required parameters  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>: Complete current statement  
-- <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>: Refactor menu  
-- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>: Extract variable  
-- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd>: Extract method  
-- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>: Extract field  
-- <kbd>Shift</kbd> + <kbd>F6</kbd>: Refactor name  
-- <kbd>Ctrl</kbd> + <kbd>I</kbd>: Implement interface  
-- <kbd>Ctrl</kbd> + <kbd>ALt</kbd> + <kbd>L</kbd>: Format file  
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd>: Move line  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd>: Move block  
-- <kbd>Ctrl</kbd> + <kbd>D</kbd>: Duplicate line  
-- <kbd>Ctrl</kbd> + <kbd>/</kbd>: Comment out / Uncomment  
-- <kbd>Alt</kbd> + <kbd>J</kbd>: Add next occurrence to selection  
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>: Remove last occurrence from selection  
-- <kbd>Alt</kbd> + <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd>: Add all occurrences to selection  
-- <kbd>Ctrl</kbd> + <kbd>W</kbd>: Grow selection  
-- <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Left/Right</kbd>: Grow selection left/right  
-  
-- <kbd>Ctrl</kbd> + <kbd>K</kbd>: Commit  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>: Push  
-- <kbd>Alt</kbd> + <kbd>1</kbd>: Project folder view  
-- <kbd>Alt</kbd> + <kbd>0</kbd> : Commit view 
-- <kbd>Alt</kbd> + <kbd>9</kbd> : Git view
-- <kbd>Alt</kbd> + <kbd>Insert</kbd>: Generate file or code  
-- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>: Open Settings  
-  
-- <kbd>Ctrl</kbd> + <kbd>N</kbd>: Search classes  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd>: Search actions  
-- <kbd>Ctrl</kbd> + <kbd>B</kbd>: Find usage in code  
-- <kbd>Shift</kbd> x2: Search everywhere  
-- <kbd>Ctrl</kbd> + <kbd>F</kbd>: Find in file  
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>: Find in project / module / directory / scope  
-- <kbd>Ctrl</kbd> + <kbd>R</kbd>: Find and replace in file  
-- <kbd>Ctrl</kbd> + <kbd>F12</kbd>: Show members  
-- <kbd>F11</kbd> : Bookmark  
-- <kbd>Ctrl</kbd> + <kbd>F11</kbd> : Mnemonic bookmark  
-- <kbd>Shift</kbd> + <kbd>F11</kbd> : Show bookmarks  
-- <kbd>Ctrl</kbd> + <kbd>`</kbd> : Show quick switch list
+### Code Editing & Refactoring
 
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> : View source in popup window
-- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> : Open refactor menu
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>µ</kbd> : Open branch menu
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open action menu
-	- <kbd>Alt</kbd> + <kbd>Enter</kbd> : Assign shortcut
-  
+|Shortcut|Action|
+|---|---|
+|Alt + Enter|Show inspections / intentions / fixes|
+|Ctrl + Shift + Space|Code suggestions|
+|Ctrl + P|Required parameters|
+|Ctrl + Alt + P|Extract parameter|
+|Ctrl + Shift + Enter|Complete current statement|
+|Shift + Ctrl + Alt + T|Refactor menu|
+|Ctrl + Alt + V|Extract variable|
+|Ctrl + Alt + M|Extract method|
+|Ctrl + Alt + F|Extract field|
+|Shift + F6|Refactor name|
+|Ctrl + I|Implement interface|
+|Ctrl + Alt + L|Format file|
+|Alt + Insert|Generate file or code|
+|Ctrl + Alt + T|Surround with|
+
+### Line & Block Operations
+
+|Shortcut|Action|
+|---|---|
+|Alt + Shift + Up/Down|Move line|
+|Ctrl + Shift + Up/Down|Move block|
+|Ctrl + D|Duplicate line|
+|Ctrl + /|Comment out / Uncomment|
+
+### Selection Operations
+
+|Shortcut|Action|
+|---|---|
+|Alt + J|Add next occurrence to selection|
+|Alt + Shift + J|Remove last occurrence from selection|
+|Alt + Ctrl + Shift + J|Add all occurrences to selection|
+|Ctrl + W|Grow selection|
+|Shift + Ctrl + Left/Right|Grow selection left/right|
+
+### Navigation & View
+
+| Shortcut         | Action                      |
+| ---------------- | --------------------------- |
+| Ctrl + M         | Scroll to center            |
+| Alt + 1          | Project folder view         |
+| Alt + 0          | Commit view                 |
+| Alt + 9          | Git view                    |
+| Ctrl + Alt + S   | Open Settings               |
+| Ctrl + `         | Show quick switch list      |
+| Ctrl + Shift + I | View source in popup window |
+| F2               | Next highlighted error      |
+| Shift + F2       | Previous highlighted error  |
+
+### Search & Find
+
+| Shortcut         | Action                      |
+| ---------------- | --------------------------- |
+| Ctrl + N         | Search classes              |
+| Ctrl + Shift + N | Search files                |
+| Ctrl + Shift + A | Search actions              |
+| Ctrl + B         | Find usage/declaration      |
+| Ctrl + Alt + B   | Find implementation         |
+| Shift x2         | Search everywhere           |
+| Ctrl + F         | Find in file                |
+| Ctrl + Shift + F | Find in project             |
+| Ctrl + R         | Find and replace in file    |
+| Ctrl + Shift + R | Find and replace in project |
+| Ctrl + F12       | Show members                |
+
+### Bookmarks
+
+|Shortcut|Action|
+|---|---|
+|F11|Bookmark|
+|Ctrl + F11|Mnemonic bookmark|
+|Shift + F11|Show bookmarks|
+
+### Running
+
+| Shortcut           | Action            |
+| ------------------ | ----------------- |
+| Shift + F10        | Run configuration |
+| Ctrl + Shift + F10 | Run current block |
+
+### Debugging
+
+| Shortcut   | Action              |
+| ---------- | ------------------- |
+| Ctrl + F8  | Set breakpoint      |
+| Shift + F9 | Debug configuration |
+| F9         | Resume              |
+| F8         | Step over           |
+| F7         | Step into           |
+| Shift + F8 | Step out            |
+
+## Action Menus
+
+|Shortcut|Action|
+|---|---|
+|Ctrl + Alt + Shift + T|Open refactor menu|
+|Ctrl + Shift + A|Open action menu|
+
+### Version Control
+
+|Shortcut|Action|
+|---|---|
+|Ctrl + K|Commit|
+|Ctrl + Shift + K|Push|
+|Ctrl + Shift + µ|Open branch menu|
+
 Some other functions do not have keyboard shortcuts, you might want to consider assigning some of these:  
   
 - Extract to interface 
