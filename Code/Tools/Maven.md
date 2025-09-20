@@ -88,7 +88,7 @@ Basic example:
     <build>
 	    <plugins>
 		    <plugin>
-			    <groupId>org.apachi.maven.plugins</groupId>
+			    <groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
 				<configuration>
@@ -320,7 +320,7 @@ For example the clean plugin:
 </plugin>  
 ```  
   
-*Required to add to pom since Java 8.*  
+*It's highly recommended to configure the maven-compiler-plugin to specify your desired Java version, especially when working with Java 9 or later.*  
   
 ### Jar Plugin  
   
@@ -336,7 +336,9 @@ For example the clean plugin:
   <artifactId>maven-jar-plugin</artifactId>  
   <version>3.1.2</version>  
   <configuration>  
-    <includes>**/*.xml</includes>  
+    <includes>
+	    <include>**/*.xml</include>
+    </includes>  
   </configuration>  
 </plugin>  
 ```  
