@@ -1,0 +1,21 @@
+## Links
+
+[Best practices](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html)
+[Actions](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations.html)
+[Commands](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/dynamodb/index.html)
+
+## CLI examples
+
+1) Launch the AWS CloudShell and run the following command to create a DynamoDB table:
+
+aws dynamodb create-table --table-name ProductCatalog --attribute-definitions \
+AttributeName=Id,AttributeType=N --key-schema \
+AttributeName=Id,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+
+2) Download the items.json file to your CloudShell environment:
+curl -O https://raw.githubusercontent.com/ACloudGuru-Resources/course-aws-certified-developer-associate/main/Create_A_DynamoDB_Table_Demo/items.json
+
+3) Populate the table you just created with the file you just downloaded: 
+aws dynamodb batch-write-item --request-items file://items.json
+
